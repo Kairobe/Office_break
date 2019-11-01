@@ -29,12 +29,16 @@ public class Player : MonoBehaviour
 
     public void Objeto(GameObject item)
     {
-        Debug.Log("He pillado un objeto :D" );
-        Debug.Log(item.tag);
+        if (item != null) { 
+            Debug.Log("He pillado un objeto :D");
+            Debug.Log(item.tag);
 
-        if (item.tag == "Extintor")
-        {
-           currentspeed = _speed + _boost;
+            string tagObjeto = item.tag;
+
+            if (tagObjeto == "Extintor")
+            {
+                currentspeed = _speed + _boost;
+            }
         }
-        }
+    }
 }
