@@ -3,16 +3,16 @@
 public class Extintor : Objeto
 {
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
     }
 
     // Update is called once per frame
-    private void Update()
+    void Update()
     {
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
