@@ -1,4 +1,4 @@
-﻿public abstract class ObjetoColeccionable : Objeto
+﻿public class Maletin : ObjetoColeccionable
 {
     // Start is called before the first frame update
     void Start()
