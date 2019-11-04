@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Maletin : Objeto
+public class ObjetoPowerUp : Objeto
 {
     // Start is called before the first frame update
     void Start()
@@ -12,12 +12,6 @@ public class Maletin : Objeto
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
-
-    override
-    public void consumePosition()
     {
         
     }

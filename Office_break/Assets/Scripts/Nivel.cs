@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clip : Objeto
+public class Nivel : MonoBehaviour
 {
+    public List<Vector3> availablePositions = new List<Vector3>();
+    public List<Object> availableObjects = new List<Object>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,11 +15,6 @@ public class Clip : Objeto
 
     // Update is called once per frame
     void Update()
-    {
-        
-    }
-    override
-    public void consumePosition()
     {
         
     }

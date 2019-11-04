@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Objeto : MonoBehaviour
+public class ObjetoColeccionable : Objeto
 {
-    public Vector3 objectPosition = new Vector3();
-
     // Start is called before the first frame update
     void Start()
     {
