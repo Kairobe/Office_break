@@ -61,10 +61,12 @@ public class Nivel : MonoBehaviour
     {
         foreach (string objectType in this.maxNumberOfObjectByType.Keys)
         {
+            GameObject prefab = this.gameObjectPrefabs[objectType];
+
             for (int i = 0; i < this.maxNumberOfObjectByType[objectType]; i++)
             {
                 Vector3 position = availablePositions[Random.Range(0, availablePositions.Count)];
-                Instantiate(this.gameObjectPrefabs[objectType], position, Quaternion.identity);
+                Instantiate(prefab, position, prefab.transform.rotation);
 
                 availablePositions.Remove(position);
             }
