@@ -202,6 +202,7 @@ MonoBehaviour:
   _speed: 3.5
   _boost: 2
   currentspeed: 0
+  tankControls: 0
 --- !u!65 &730867755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -319,14 +320,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ae4b77ad7a8fb74c87aec0e930e4ba7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipPrefab: {fileID: 7276101283057276080, guid: 85431ff8293d13946bca53d7dc7780cf,
+  clipPrefab: {fileID: 2390302518047609158, guid: 9312a1def25dae841a3c5561cd63fc8d,
     type: 3}
   maletinPrefab: {fileID: 7702301646028309906, guid: e27cdcce5c2fe49429d9d553ad322cce,
     type: 3}
   clipMaxNumber: 1
   maletinMaxNumber: 2
   availablePositions: []
-  availableObjects: []
 --- !u!4 &919014709
 Transform:
   m_ObjectHideFlags: 0
