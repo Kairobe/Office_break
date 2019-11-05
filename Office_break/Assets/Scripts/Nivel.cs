@@ -15,14 +15,21 @@ public class Nivel : MonoBehaviour
 
     public List<Vector3> availablePositions = new List<Vector3>();
 
+    private ControladorUi controladorUi;
+
+    private void Awake()
+    {
+        this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        availablePositions.Add(new Vector3(1, 1, 0));
-        availablePositions.Add(new Vector3(2, 1, 0));
-        availablePositions.Add(new Vector3(3, 1, 0));
-        availablePositions.Add(new Vector3(4, 1, 0));
-        availablePositions.Add(new Vector3(5, 1, 0));
+        availablePositions.Add(new Vector3(1, 3, 0));
+        availablePositions.Add(new Vector3(2, 3, 0));
+        availablePositions.Add(new Vector3(3, 3, 0));
+        availablePositions.Add(new Vector3(4, 3, 0));
+        availablePositions.Add(new Vector3(5, 3, 0));
 
         this.collectedObjectNumber = new Dictionary<string, int>();
         this.collectedObjectNumber.Add(nameof(Clip), 0);
@@ -54,6 +61,8 @@ public class Nivel : MonoBehaviour
         int unitsToIncrease = units ?? 1;
 
         this.collectedObjectNumber[objectType] += unitsToIncrease;
+
+        this.controladorUi.UpdateObjectCount(objectType, this.collectedObjectNumber[objectType]);
     }
 
     /// <summary> Initializes the different objects in random positions in the scene. </summary>
