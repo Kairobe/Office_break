@@ -8,10 +8,10 @@ public class Nivel : MonoBehaviour
     private Dictionary<string, int> maxNumberOfObjectByType, collectedObjectNumber;
 
     [SerializeField]
-    private GameObject clipPrefab, maletinPrefab;
+    private GameObject clipPrefab, maletinPrefab, extintorPrefab;
 
     [SerializeField]
-    private int clipMaxNumber, maletinMaxNumber = 0;
+    private int clipMaxNumber, maletinMaxNumber, extintorMaxNumber = 0;
 
     public List<Vector3> availablePositions = new List<Vector3>();
 
@@ -31,10 +31,12 @@ public class Nivel : MonoBehaviour
         this.gameObjectPrefabs = new Dictionary<string, GameObject>();
         this.gameObjectPrefabs.Add(nameof(Clip), clipPrefab);
         this.gameObjectPrefabs.Add(nameof(Maletin), maletinPrefab);
+        this.gameObjectPrefabs.Add(nameof(Extintor), extintorPrefab);
 
         this.maxNumberOfObjectByType = new Dictionary<string, int>();
         this.maxNumberOfObjectByType.Add(nameof(Clip), clipMaxNumber);
         this.maxNumberOfObjectByType.Add(nameof(Maletin), maletinMaxNumber);
+        this.maxNumberOfObjectByType.Add(nameof(Extintor), extintorMaxNumber);
 
         InitializeObjects();
     }

@@ -25,6 +25,6 @@ public class Spawner : MonoBehaviour
         _posicionesExtintor.Add(new Vector3(1, 1, 1));
         _posicionesExtintor.Add(new Vector3(0, 0, 0));
         Vector3 posInit = _posicionesExtintor[Random.Range(0, _posicionesExtintor.Count)];
-        GameObject newEnemy = Instantiate(_extintorPrefab, posInit, Quaternion.identity);
+        GameObject newEnemy = Instantiate(_extintorPrefab, posInit, _extintorPrefab.transform.rotation);
     }
 }
