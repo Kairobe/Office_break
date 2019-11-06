@@ -8,6 +8,7 @@ enum ControlType{
 
 public class Player : MonoBehaviour
 {
+    CharacterController characterController;
 
     [SerializeField]
     private float _speed = 3.5f;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentspeed = _speed;
+        characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -37,10 +39,12 @@ public class Player : MonoBehaviour
                 transform.Translate(direction * currentspeed * Time.deltaTime);
                 break;
             case ControlType.tank:
-                direction = new Vector3(0, 0, verticalInput);
+                direction = new Vector3(0, horizontalInput, verticalInput);
                 rotation = new Vector3(0, horizontalInput, 0);
-                transform.Translate(direction * currentspeed * Time.deltaTime);
-                transform.Rotate(rotation * currentspeed * 0.7f);
+                //transform.Translate(direction * currentspeed * Time.deltaTime);
+                //transform.Rotate(rotation * currentspeed * 0.7f);
+                Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+                characterController.Move(moveDirection * currentspeed * Time.deltaTime);
                 //TODO Evitar marcha atras
                 break;
             case ControlType.car:
