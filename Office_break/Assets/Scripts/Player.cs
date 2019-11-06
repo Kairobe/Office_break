@@ -39,23 +39,20 @@ public class Player : MonoBehaviour
         switch (controlType)
         {
             case ControlType.strafe:
-                direction = new Vector3(horizontalInput, 0, verticalInput);
-                transform.Translate(direction * currentspeed * Time.deltaTime);
+                direction = new Vector3(horizontalInput, 0.0f, verticalInput);
+                characterController.Move(direction * currentspeed * Time.deltaTime);
                 break;
             case ControlType.tank:
-                direction = new Vector3(0, horizontalInput, verticalInput);
+                direction = new Vector3(verticalInput*Mathf.Sin(transform.eulerAngles.y*0.01745f), 0.0f, verticalInput*Mathf.Cos(transform.eulerAngles.y*0.01745f));
                 rotation = new Vector3(0, horizontalInput, 0);
-                //transform.Translate(direction * currentspeed * Time.deltaTime);
-                //transform.Rotate(rotation * currentspeed * 0.7f);
-                Vector3 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-                characterController.Move(moveDirection * currentspeed * Time.deltaTime);
-                //TODO Evitar marcha atras
+                transform.Rotate(rotation * currentspeed * 0.7f);
+                characterController.Move(direction * currentspeed * Time.deltaTime);
                 break;
             case ControlType.car:
-                direction = new Vector3(0, 0, verticalInput);
+                direction = new Vector3(verticalInput*Mathf.Sin(transform.eulerAngles.y*0.01745f), 0.0f, verticalInput*Mathf.Cos(transform.eulerAngles.y*0.01745f));
                 rotation = new Vector3(0, horizontalInput, 0);
-                transform.Translate(direction * currentspeed * Time.deltaTime);
                 transform.Rotate(rotation * currentspeed * 0.7f * verticalInput);
+                characterController.Move(direction * currentspeed * Time.deltaTime);
                 break;
             default:
                 Debug.Log("No se como lo has hecho, pero no hay elegido un tipo de controles");
