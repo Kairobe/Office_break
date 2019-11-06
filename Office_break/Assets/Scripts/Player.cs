@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-enum ControlType{
+internal enum ControlType
+{
     strafe, tank, car,
 }
 
@@ -12,13 +11,16 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private float _speed = 3.5f;
+
     [SerializeField]
     private float _boost = 2f;
+
     [SerializeField]
     private ControlType controlType = ControlType.tank;
-    [SerializeField]
 
+    [SerializeField]
     public float currentspeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +35,9 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 direction;
         Vector3 rotation;
-        switch(controlType){
+
+        switch (controlType)
+        {
             case ControlType.strafe:
                 direction = new Vector3(horizontalInput, 0, verticalInput);
                 transform.Translate(direction * currentspeed * Time.deltaTime);
@@ -61,7 +65,8 @@ public class Player : MonoBehaviour
 
     public void Objeto(GameObject item)
     {
-        if (item != null) { 
+        if (item != null)
+        {
             Debug.Log("He pillado un objeto :D");
             Debug.Log(item.tag);
 
