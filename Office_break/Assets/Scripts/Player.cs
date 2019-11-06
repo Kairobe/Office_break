@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 internal enum ControlType
 {
@@ -7,7 +8,7 @@ internal enum ControlType
 
 public class Player : MonoBehaviour
 {
-    CharacterController characterController;
+    private CharacterController characterController;
 
     [SerializeField]
     private float _speed = 3.5f;
@@ -43,13 +44,13 @@ public class Player : MonoBehaviour
                 characterController.Move(direction * currentspeed * Time.deltaTime);
                 break;
             case ControlType.tank:
-                direction = new Vector3(verticalInput*Mathf.Sin(transform.eulerAngles.y*0.01745f), 0.0f, verticalInput*Mathf.Cos(transform.eulerAngles.y*0.01745f));
+                direction = new Vector3(verticalInput * Mathf.Sin(transform.eulerAngles.y * 0.01745f), 0.0f, verticalInput * Mathf.Cos(transform.eulerAngles.y * 0.01745f));
                 rotation = new Vector3(0, horizontalInput, 0);
                 transform.Rotate(rotation * currentspeed * 0.7f);
                 characterController.Move(direction * currentspeed * Time.deltaTime);
                 break;
             case ControlType.car:
-                direction = new Vector3(verticalInput*Mathf.Sin(transform.eulerAngles.y*0.01745f), 0.0f, verticalInput*Mathf.Cos(transform.eulerAngles.y*0.01745f));
+                direction = new Vector3(verticalInput * Mathf.Sin(transform.eulerAngles.y * 0.01745f), 0.0f, verticalInput * Mathf.Cos(transform.eulerAngles.y * 0.01745f));
                 rotation = new Vector3(0, horizontalInput, 0);
                 transform.Rotate(rotation * currentspeed * 0.7f * verticalInput);
                 characterController.Move(direction * currentspeed * Time.deltaTime);
@@ -71,8 +72,22 @@ public class Player : MonoBehaviour
 
             if (tagObjeto == "Extintor")
             {
-                currentspeed = _speed + _boost;
+                var coroutine = IncreaseSpeed(3);
+
+                StartCoroutine(coroutine);
             }
         }
+    }
+
+    public IEnumerator IncreaseSpeed(int seconds)
+    {
+        currentspeed = _speed + _boost;
+
+        for (int i = 0; i < seconds; i++)
+        {
+            yield return new WaitForSeconds(1);
+        }
+
+        currentspeed = _speed;
     }
 }
