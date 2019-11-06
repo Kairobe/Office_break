@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum ControlType{
+    strafe, tank, car,
+}
+
 public class Player : MonoBehaviour
 {
 
@@ -9,10 +13,11 @@ public class Player : MonoBehaviour
     private float _speed = 3.5f;
     [SerializeField]
     private float _boost = 2f;
+    [SerializeField]
+    private ControlType controlType = ControlType.tank;
+    [SerializeField]
 
     public float currentspeed;
-    public bool tankControls;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -24,15 +29,29 @@ public class Player : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        if(tankControls){
-            Vector3 direction = new Vector3(0, 0, verticalInput);
-            Vector3 rotation = new Vector3(0, horizontalInput, 0);
-            transform.Translate(direction * currentspeed * Time.deltaTime);
-            transform.Rotate(rotation * currentspeed * 0.25f);
-            if(gameObject.transform.rotation.y > 180) gameObject.transform.rotation.SetAxisAngle(new Vector3(0, 1, 0), 180);
-        }else{
-            Vector3 direction = new Vector3(horizontalInput, 0, verticalInput);
-            transform.Translate(direction * currentspeed * Time.deltaTime);
+        Vector3 direction;
+        Vector3 rotation;
+        switch(controlType){
+            case ControlType.strafe:
+                direction = new Vector3(horizontalInput, 0, verticalInput);
+                transform.Translate(direction * currentspeed * Time.deltaTime);
+                break;
+            case ControlType.tank:
+                direction = new Vector3(0, 0, verticalInput);
+                rotation = new Vector3(0, horizontalInput, 0);
+                transform.Translate(direction * currentspeed * Time.deltaTime);
+                transform.Rotate(rotation * currentspeed * 0.7f);
+                //TODO Evitar marcha atras
+                break;
+            case ControlType.car:
+                direction = new Vector3(0, 0, verticalInput);
+                rotation = new Vector3(0, horizontalInput, 0);
+                transform.Translate(direction * currentspeed * Time.deltaTime);
+                transform.Rotate(rotation * currentspeed * 0.7f * verticalInput);
+                break;
+            default:
+                Debug.Log("No se como lo has hecho, pero no hay elegido un tipo de controles");
+                break;
         }
     }
 
