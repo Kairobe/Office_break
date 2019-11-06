@@ -324,9 +324,10 @@ MonoBehaviour:
     type: 3}
   maletinPrefab: {fileID: 7702301646028309906, guid: e27cdcce5c2fe49429d9d553ad322cce,
     type: 3}
+  extintorPrefab: {fileID: 0}
   clipMaxNumber: 1
   maletinMaxNumber: 2
-  availablePositions: []
+  extintorMaxNumber: 0
 --- !u!4 &919014709
 Transform:
   m_ObjectHideFlags: 0
@@ -509,7 +510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1803732219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 5.22, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
