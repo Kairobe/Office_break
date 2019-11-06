@@ -24,7 +24,7 @@ public class Nivel : MonoBehaviour
 
         InitializeObjectsToCollect();
 
-        InitializeMaximunNumberOfInstancesByGameObject();
+        InitializeMaximumNumberOfInstancesByGameObject();
 
         InitializeGameObjectPrefabs();
 
@@ -44,7 +44,7 @@ public class Nivel : MonoBehaviour
     /// <summary>
     /// Initializes the manixum number of instances that must be generated of each Game Object type.
     /// </summary>
-    private void InitializeMaximunNumberOfInstancesByGameObject()
+    private void InitializeMaximumNumberOfInstancesByGameObject()
     {
         this.maxNumberOfObjectByType = new Dictionary<string, int>
         {
