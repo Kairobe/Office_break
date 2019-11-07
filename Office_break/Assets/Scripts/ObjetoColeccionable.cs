@@ -16,7 +16,7 @@ public abstract class ObjetoColeccionable : Objeto
 
     private void Awake()
     {
-        nivel = GameObject.Find("Nivel").GetComponent<Nivel>();
+        nivel = GameObject.Find("LevelController").GetComponent<Nivel>();
     }
 
     void OnTriggerEnter(Collider other)
