@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Nivel : MonoBehaviour
@@ -17,6 +18,15 @@ public class Nivel : MonoBehaviour
 
     private ControladorUi controladorUi;
 
+    public GameObject[] currentLevelCheckPoints;
+
+    private int activeCheckPoint = 0;
+
+    private int lapNumber = 0;
+
+    [SerializeField]
+    private int raceLapsNumber;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +39,25 @@ public class Nivel : MonoBehaviour
         InitializeGameObjectPrefabs();
 
         InitializeObjects();
+
+        this.controladorUi.UpdateLapCounter(this.lapNumber, this.raceLapsNumber);
     }
 
     private void Awake()
     {
+        GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("CheckPoint");
+        this.currentLevelCheckPoints = new GameObject[checkpoints.Length];
+
+        this.currentLevelCheckPoints[0] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint0");
+        this.currentLevelCheckPoints[1] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint1");
+        this.currentLevelCheckPoints[2] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint2");
+        this.currentLevelCheckPoints[3] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint3");
+
+        for (int i = 1; i < this.currentLevelCheckPoints.Length; i++)
+        {
+            this.currentLevelCheckPoints[i].SetActive(false);
+        }
+
         this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();
     }
 
@@ -109,21 +134,56 @@ public class Nivel : MonoBehaviour
         this.controladorUi.UpdateObjectCount(objectType, this.collectedObjectNumber[objectType]);
     }
 
+    public void ActivateNextCheckPoint(int checkPointPassedNumber)
+    {
+        if (checkPointPassedNumber != this.activeCheckPoint)
+        {
+            return;
+        }
+
+        if (checkPointPassedNumber == 0)
+        {
+            if (this.lapNumber == this.raceLapsNumber)
+            {
+                this.controladorUi.EndGame();
+            }
+
+            this.lapNumber++;
+            this.controladorUi.UpdateLapCounter(this.lapNumber, this.raceLapsNumber);
+
+            if (this.lapNumber > 1)
+            {
+                this.InitializeObjects();
+            }
+        }
+
+        int currentCheckPoint = this.activeCheckPoint;
+        int nextCheckPoint = (++this.activeCheckPoint) % this.currentLevelCheckPoints.Length;
+
+        this.currentLevelCheckPoints[currentCheckPoint].SetActive(false);
+        this.currentLevelCheckPoints[nextCheckPoint].SetActive(true);
+        this.activeCheckPoint = nextCheckPoint;
+    }
+
     /// <summary> Initializes the different objects in random positions in the scene. </summary>
     private void InitializeObjects()
     {
+        List<(Vector3 position, int rotation)> availablePositionsCopy = new List<(Vector3 position, int rotation)>(availablePositions);
+
+        Debug.Log(availablePositionsCopy.Count);
+
         foreach (string objectType in this.maxNumberOfObjectByType.Keys)
         {
             GameObject prefab = this.gameObjectPrefabs[objectType];
 
             for (int i = 0; i < this.maxNumberOfObjectByType[objectType]; i++)
             {
-                (Vector3 position, int rotation) = availablePositions[Random.Range(0, availablePositions.Count)];
+                (Vector3 position, int rotation) = availablePositionsCopy[Random.Range(0, availablePositionsCopy.Count)];
 
                 GameObject createdGameObject = Instantiate(prefab, position, prefab.transform.rotation);
                 createdGameObject.transform.Rotate(new Vector3(0, 0, rotation));
 
-                availablePositions.Remove((position, rotation));
+                availablePositionsCopy.Remove((position, rotation));
             }
         }
     }
