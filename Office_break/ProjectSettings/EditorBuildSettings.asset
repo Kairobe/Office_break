@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Oficina.unity
     guid: d97da2a00ddb41a42a2d231f82758f49
+  - enabled: 1
+    path: Assets/Scenes/Cafeteria.unity
+    guid: 51427f7dd961b844b928c0a0b8288b9c
   m_configObjects: {}
