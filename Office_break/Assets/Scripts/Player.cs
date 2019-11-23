@@ -6,10 +6,10 @@ public class Player : MonoBehaviour
     private CharacterController characterController;
     
     [SerializeField]
-    private float _speed = 3.5f;
+    private float _baseSpeed = 1.5f;
 
     [SerializeField]
-    private float _boost = 2f;
+    private float _boostSpeed = 2f;
 
     [SerializeField]
     private string _arma = "Tirachinas";
@@ -23,12 +23,17 @@ public class Player : MonoBehaviour
     private Vector3 direction;
     private Vector3 rotation;
 
+    [SerializeField] private float coffeSecondsLeft;
+    [SerializeField] private float coffeTimeMax = 40;
+    [SerializeField] private float coffeSpeed = 2f;
+    private bool boostActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentspeed = _speed;
+        currentspeed = _baseSpeed;
         characterController = GetComponent<CharacterController>();
+        coffeSecondsLeft = coffeTimeMax;
     }
 
     // Update is called once per frame
@@ -37,12 +42,15 @@ public class Player : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
   
-
-
         direction = new Vector3(verticalInput * Mathf.Sin(transform.eulerAngles.y * 0.01745f), 0.0f, verticalInput * Mathf.Cos(transform.eulerAngles.y * 0.01745f));
         rotation = new Vector3(0, horizontalInput, 0);
         transform.Rotate(rotation * currentspeed * 0.7f);
+
+        currentspeed = _baseSpeed;
+        if(boostActive) currentspeed += _boostSpeed;
+        if(coffeSecondsLeft != 0f) currentspeed += coffeSpeed;
         characterController.Move(direction * currentspeed * Time.deltaTime);
+        coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
 
         if(_arma != "None")
         {
@@ -74,14 +82,14 @@ public class Player : MonoBehaviour
 
     public IEnumerator IncreaseSpeed(int seconds)
     {
-        currentspeed = _speed + _boost;
+        boostActive = true;
 
         for (int i = 0; i < seconds; i++)
         {
             yield return new WaitForSeconds(1);
         }
 
-        currentspeed = _speed;
+        boostActive = false;
     }
 
     public void Disparar()
@@ -101,6 +109,10 @@ public class Player : MonoBehaviour
  
 
             return this.transform.forward;
+    }
+
+    public void FillCoffe(float percentaje){
+        coffeSecondsLeft = Mathf.Min(coffeTimeMax, coffeSecondsLeft+(percentaje*coffeTimeMax));
     }
 
 }
