@@ -7,6 +7,10 @@ TagManager:
   - Extintor
   - Clip
   - Maletin
+  - Nivel
+  - CheckPoint
+  - PropiedadesUi
+  - Borrador
   layers:
   - Default
   - TransparentFX
