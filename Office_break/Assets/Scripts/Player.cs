@@ -92,18 +92,15 @@ public class Player : MonoBehaviour
             float verticalInput = Input.GetAxis("Vertical");
             GameObject Municion = Instantiate(_borradorPrefab, new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
 
-            Debug.Log(this.transform.forward);
+            
         }
     }
 
     public Vector3 getDireccion()
     {
-        if (direction[0] == 0 && direction[1] == 0 && direction[2] == 0)
-        {
-            return this.transform.forward;
-        }
+ 
 
-            return direction;
+            return this.transform.forward;
     }
 
 }
