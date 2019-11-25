@@ -29,18 +29,18 @@ public class CameraCollision : MonoBehaviour
             if (h != 0f) moved = true;
         }
 
-        if (Physics.Linecast(maxPos, minPos, out hit) && moved){
+        if (Physics.Linecast(minPos, maxPos, out hit) && moved){
             if (consecutiveHits <= 2){
                 consecutiveHits++;
-                futurePos = maxPos - (posDif*.1f);
+                futurePos = maxPos;
             } else 
-                futurePos = maxPos - new Vector3(
-                    posDif.x * (hit.distance/2 + .1f),
-                    posDif.y * (hit.distance/2 + .1f),
-                    posDif.z * (hit.distance/2 + .1f)
+                futurePos = minPos + new Vector3(
+                    posDif.x * (hit.distance/2),
+                    posDif.y * (hit.distance/2),
+                    posDif.z * (hit.distance/2)
                 );
         } else {
-            futurePos = maxPos - (posDif*.1f);
+            futurePos = maxPos;
             consecutiveHits = 0;
         }
 
