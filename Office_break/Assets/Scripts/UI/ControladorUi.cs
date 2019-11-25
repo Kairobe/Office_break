@@ -55,7 +55,7 @@ public class ControladorUi : MonoBehaviour
 
                 break;
             case "Maletin":
-                this.maletinCountText.text = newText;
+                this.maletinCountText.text = $"{numberOfObjectsCollected}";
 
                 break;
             default:
