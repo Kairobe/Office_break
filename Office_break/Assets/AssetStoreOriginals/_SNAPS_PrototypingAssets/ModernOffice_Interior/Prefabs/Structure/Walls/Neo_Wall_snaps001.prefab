@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 23917846597765686}
   - component: {fileID: 64734768092488202}
   - component: {fileID: 3806983308496359415}
+  - component: {fileID: 2052373349430593982}
   m_Layer: 0
-  m_Name: Neo_Wall
+  m_Name: Neo_Wall_snaps001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1555,7 +1556,7 @@ MonoBehaviour:
   - {x: -0.0000029684181, y: 0.0000031297923, z: -1, w: -1}
   - {x: -0.0000014060562, y: 0.0000015635765, z: -1, w: -1}
   - {x: -0.0000014060562, y: 0.0000015635765, z: -1, w: -1}
-  - {x: 0.00000015630643, y: -0.0000000026397415, z: -1, w: -1}
+  - {x: 0.00000015630643, y: -0.0000000026397349, z: -1, w: -1}
   - {x: 0, y: 0, z: -1, w: -1}
   - {x: 0, y: 0, z: -1, w: -1}
   - {x: 0, y: 0, z: -1, w: -1}
@@ -1569,7 +1570,7 @@ MonoBehaviour:
   - {x: 0.0000001589457, y: -0.0000000037721497, z: 1, w: -1}
   - {x: 0.0000001589457, y: 0.0000000037721493, z: 1, w: -1}
   - {x: -0.0000014086947, y: -0.0000015609385, z: 1, w: -1}
-  - {x: 0.00000016158499, y: -0.0000000026397262, z: 1, w: -1}
+  - {x: 0.00000016158498, y: -0.0000000026397395, z: 1, w: -1}
   - {x: -0.0000014086947, y: -0.0000015609385, z: 1, w: -1}
   - {x: -0.0000029789765, y: -0.000003119239, z: 1, w: -1}
   - {x: 0, y: 0, z: 1, w: -1}
@@ -1754,3 +1755,16 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!65 &2052373349430593982
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720321481462350}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.65, y: 3, z: 3.000001}
+  m_Center: {x: 0, y: 1.5, z: 1.500001}
