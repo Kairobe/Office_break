@@ -4,31 +4,46 @@ using UnityEngine;
 
 public class CameraCollision : MonoBehaviour
 {
-
-    public float minDistance = 1f;
-    public float maxDistance = 4f;
-    public float smooth = 10f;
-    public float errorCorrection = 0.9f;
-    Vector3 dollyDir;
-    public Vector3 dollyDirAdj;
-    public float distance;
+    private Vector3 minPos, maxPos, posDif, futurePos;
+    public bool moved;
+    private int consecutiveHits;
 
     void Start() {
-
-    }
-    void Awake() {
-        dollyDir = transform.localPosition.normalized;
-        distance = transform.localPosition.magnitude;
+        moved = false;
+        consecutiveHits = 0;
     }
     void Update() {
-        Vector3 futurePos = transform.parent.TransformPoint (dollyDir * maxDistance);
+
+        minPos = transform.parent.parent.position;
+        maxPos = transform.parent.position;
+        posDif = new Vector3(
+            maxPos.x - minPos.x,
+            maxPos.y - minPos.y,
+            maxPos.z - minPos.z
+        );
+
         RaycastHit hit;
 
-        if (Physics.Linecast (transform.parent.position, futurePos, out hit))
-            distance = Mathf.Clamp (hit.distance * errorCorrection, minDistance, maxDistance);
-        else
-            distance = maxDistance;
+        if(!moved){
+            float h = Input.GetAxis("Horizontal");
+            if (h != 0f) moved = true;
+        }
 
-        transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
+        if (Physics.Linecast(maxPos, minPos, out hit) && moved){
+            if (consecutiveHits <= 2){
+                consecutiveHits++;
+                futurePos = maxPos - (posDif*.1f);
+            } else 
+                futurePos = maxPos - new Vector3(
+                    posDif.x * (hit.distance/2 + .1f),
+                    posDif.y * (hit.distance/2 + .1f),
+                    posDif.z * (hit.distance/2 + .1f)
+                );
+        } else {
+            futurePos = maxPos - (posDif*.1f);
+            consecutiveHits = 0;
+        }
+
+        transform.position = futurePos;
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoffeTest : MonoBehaviour
+public class CoffeMachine : MonoBehaviour
 {
     private bool playerReloading, halfReloaded, fullReloaded;
     private float timeStayed;
