@@ -24,16 +24,16 @@ public class CameraCollision : MonoBehaviour
 
         RaycastHit hit;
 
-        if(!moved){
+        /*if(!moved){
             float h = Input.GetAxis("Horizontal");
             if (h != 0f) moved = true;
-        }
+        }*/
 
         if (Physics.Linecast(minPos, maxPos, out hit) && moved){
-            if (consecutiveHits <= 2){
+            /*if (consecutiveHits <= 2){
                 consecutiveHits++;
                 futurePos = maxPos;
-            } else 
+            } else */
                 futurePos = minPos + new Vector3(
                     posDif.x * (hit.distance/2),
                     posDif.y * (hit.distance/2),
@@ -41,7 +41,7 @@ public class CameraCollision : MonoBehaviour
                 );
         } else {
             futurePos = maxPos;
-            consecutiveHits = 0;
+            //consecutiveHits = 0;
         }
 
         transform.position = futurePos;
