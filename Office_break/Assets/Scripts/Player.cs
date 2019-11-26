@@ -30,13 +30,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float coffeSpeed = 2f;
     private bool boostActive = false;
 
-    private Animator anim;
-
-    void Awake()
-    {
-        anim = GetComponent<Animator>();
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -65,9 +58,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("Disparando", true);
                 Disparar();
-                anim.SetBool("Disparando", false);
             }
         }
     }

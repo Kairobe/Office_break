@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuInicial.unity
     guid: 78f5e37c3d26a40419368fd0c62cb5c9
   - enabled: 1
-    path: Assets/Scenes/OficinaCopSec.unity
+    path: Assets/Scenes/Oficina.unity
     guid: d97da2a00ddb41a42a2d231f82758f49
   - enabled: 1
     path: Assets/Scenes/Cafeteria.unity
