@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraCollision : MonoBehaviour
 {
@@ -8,12 +6,14 @@ public class CameraCollision : MonoBehaviour
     public bool moved;
     private int consecutiveHits;
 
-    void Start() {
+    void Start()
+    {
         moved = false;
         consecutiveHits = 0;
     }
-    void Update() {
 
+    void Update()
+    {
         minPos = transform.parent.parent.position;
         maxPos = transform.parent.position;
         posDif = new Vector3(
@@ -29,18 +29,22 @@ public class CameraCollision : MonoBehaviour
             if (h != 0f) moved = true;
         }*/
 
-        if (Physics.Linecast(minPos, maxPos, out hit)/* && moved*/){
+        if (Physics.Linecast(minPos, maxPos, out hit)/* && moved*/)
+        {
             /*if (consecutiveHits <= 2){
                 consecutiveHits++;
                 futurePos = maxPos;
             } else */
-                futurePos = minPos + new Vector3(
-                    posDif.x * (hit.distance/2),
-                    posDif.y * (hit.distance/2),
-                    posDif.z * (hit.distance/2)
-                );
-        } else {
+            futurePos = minPos + new Vector3(
+                posDif.x * (hit.distance / 2),
+                posDif.y * (hit.distance / 2),
+                posDif.z * (hit.distance / 2)
+            );
+        }
+        else
+        {
             futurePos = maxPos;
+
             //consecutiveHits = 0;
         }
 

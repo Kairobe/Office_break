@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject _extintorPrefab;
+
     [SerializeField]
     private List<Vector3> _posicionesExtintor;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,6 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     void InicializarExtintores()

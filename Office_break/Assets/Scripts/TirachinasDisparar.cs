@@ -1,15 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TirachinasDisparar : MonoBehaviour
 {
-
     [SerializeField]
     private float _speed = 10f;
+
     // Start is called before the first frame update
     [SerializeField]
     private Vector3 direction;
+
     private float rotation;
 
     void Start()
@@ -17,7 +16,6 @@ public class TirachinasDisparar : MonoBehaviour
         Player player;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         direction = player.getDireccion();
-
 
         Object.Destroy(gameObject, 3.0f);
     }
@@ -36,9 +34,7 @@ public class TirachinasDisparar : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
         //Poner métodos a invocar
     }
-
-
-
 }

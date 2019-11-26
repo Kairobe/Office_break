@@ -4,7 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController characterController;
-    
+
     [SerializeField]
     private float _baseSpeed = 1.5f;
 
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private string _arma = "Tirachinas";
+
     [SerializeField]
     private GameObject _borradorPrefab;
 
@@ -21,6 +22,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Vector3 direction;
+
     private Vector3 rotation;
 
     [SerializeField] private float coffeSecondsLeft;
@@ -48,38 +50,32 @@ public class Player : MonoBehaviour
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-  
+
         direction = new Vector3(verticalInput * Mathf.Sin(transform.eulerAngles.y * 0.01745f), 0.0f, verticalInput * Mathf.Cos(transform.eulerAngles.y * 0.01745f));
         rotation = new Vector3(0, horizontalInput, 0);
         transform.Rotate(rotation * currentspeed * 0.7f);
 
         currentspeed = _baseSpeed;
-        if(boostActive) currentspeed += _boostSpeed;
-        if(coffeSecondsLeft != 0f) currentspeed += coffeSpeed;
+        if (boostActive) currentspeed += _boostSpeed;
+        if (coffeSecondsLeft != 0f) currentspeed += coffeSpeed;
         characterController.Move(direction * currentspeed * Time.deltaTime);
         coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
 
-        if(_arma != "None")
+        if (_arma != "None")
         {
-            
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 anim.SetBool("Disparando", true);
                 Disparar();
                 anim.SetBool("Disparando", false);
             }
-           
         }
-
     }
 
     public void Objeto(GameObject item)
     {
         if (item != null)
         {
-            Debug.Log("He pillado un objeto :D");
-            Debug.Log(item.tag);
-
             string tagObjeto = item.tag;
 
             if (tagObjeto == "Extintor")
@@ -105,25 +101,21 @@ public class Player : MonoBehaviour
 
     public void Disparar()
     {
-        if(_arma == "Tirachinas")
+        if (_arma == "Tirachinas")
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
-            GameObject Municion = Instantiate(_borradorPrefab, new Vector3(transform.position.x,transform.position.y,transform.position.z), Quaternion.identity);
-
-            
+            GameObject Municion = Instantiate(_borradorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
     }
 
     public Vector3 getDireccion()
     {
- 
-
-            return this.transform.forward;
+        return this.transform.forward;
     }
 
-    public void FillCoffe(float percentaje){
-        coffeSecondsLeft = Mathf.Min(coffeTimeMax, coffeSecondsLeft+(percentaje*coffeTimeMax));
+    public void FillCoffe(float percentaje)
+    {
+        coffeSecondsLeft = Mathf.Min(coffeTimeMax, coffeSecondsLeft + (percentaje * coffeTimeMax));
     }
-
 }
