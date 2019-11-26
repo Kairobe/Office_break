@@ -37,6 +37,7 @@ public class ControladorUi : MonoBehaviour
         {
             Application.Quit();
         }
+        
     }
 
     private Rect CalculateCenterRect(float parentWidth, float parentHeight, float width, float height)
@@ -46,7 +47,7 @@ public class ControladorUi : MonoBehaviour
 
     public void UpdateObjectCount(string objectType, int numberOfObjectsCollected)
     {
-        string newText = $"x{numberOfObjectsCollected}";
+        string newText = $"{numberOfObjectsCollected}";
 
         switch (objectType)
         {
