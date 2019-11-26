@@ -29,7 +29,7 @@ public class CameraCollision : MonoBehaviour
             if (h != 0f) moved = true;
         }*/
 
-        if (Physics.Linecast(minPos, maxPos, out hit) && moved){
+        if (Physics.Linecast(minPos, maxPos, out hit)/* && moved*/){
             /*if (consecutiveHits <= 2){
                 consecutiveHits++;
                 futurePos = maxPos;
