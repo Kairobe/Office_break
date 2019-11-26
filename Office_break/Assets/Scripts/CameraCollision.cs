@@ -12,7 +12,7 @@ public class CameraCollision : MonoBehaviour
         consecutiveHits = 0;
     }
 
-    void Update()
+    void LateUpdate()
     {
         minPos = transform.parent.parent.position;
         maxPos = transform.parent.position;
