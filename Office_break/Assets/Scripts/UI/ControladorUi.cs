@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ControladorUi : MonoBehaviour
 {
-    public Text clipCountText, timeCountText, maletinCountText, lapCountText;
+    public Text clipCountText, timeCountText, maletinCountText, lapCountText, arma;
 
     private int minutes, seconds = 0;
 
