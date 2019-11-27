@@ -24,14 +24,14 @@ public class CameraCollision : MonoBehaviour
 
         RaycastHit hit;
 
-        /*if(!moved){
+        if(!moved){
             float h = Input.GetAxis("Horizontal");
             if (h != 0f) moved = true;
-        }*/
+        }
 
-        if (Physics.Linecast(minPos, maxPos, out hit)/* && moved*/)
+        if (Physics.Linecast(minPos, maxPos, out hit) && moved)
         {
-            /*if (consecutiveHits <= 2){
+            /*if (consecutiveHits <= 1){
                 consecutiveHits++;
                 futurePos = maxPos;
             } else */
