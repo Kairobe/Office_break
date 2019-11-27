@@ -37,7 +37,7 @@ public class PlayerAnimation_Movement : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         if (Input.GetKeyDown(KeyCode.UpArrow)) animator.SetBool("isMoving", true);
-        //if (Input.GetKeyUp(KeyCode.UpArrow)) animator.SetBool("isMoving", false);
+        if (Input.GetKeyUp(KeyCode.UpArrow)) animator.SetBool("isMoving", false);
 
         if (Input.GetKeyDown(KeyCode.RightArrow)) animator.SetBool("isTurningRight", true);
         if (Input.GetKeyUp(KeyCode.RightArrow)) animator.SetBool("isTurningRight", false);
