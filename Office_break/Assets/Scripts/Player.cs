@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
                 Disparar();
             }
         }
+
     }
 
     public void Objeto(GameObject item)
@@ -111,4 +112,13 @@ public class Player : MonoBehaviour
     {
         coffeSecondsLeft = Mathf.Min(coffeTimeMax, coffeSecondsLeft + (percentaje * coffeTimeMax));
     }
+
+    public float GetCoffeLeftSeconds(){
+        return coffeSecondsLeft;
+    }
+
+    public float GetCoffeLeftPercentaje(){
+        return coffeSecondsLeft/coffeTimeMax;
+    }
+
 }

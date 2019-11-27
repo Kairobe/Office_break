@@ -34,3 +34,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Office_break/ProjectSettings/Packages/com.unity.settings-manager/Settings.json
