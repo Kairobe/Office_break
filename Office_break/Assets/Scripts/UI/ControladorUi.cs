@@ -27,17 +27,15 @@ public class ControladorUi : MonoBehaviour
     // Make the contents of the window
     void DoMyWindow(int windowID)
     {
-        Debug.Log(this.mainWindowRect.x);
         if (GUI.Button(new Rect((this.mainWindowRect.width / 2.0f) - 50, ((this.mainWindowRect.height / 2.0f) - 50) / 2.0f, 100, 50), "Reiniciar"))
         {
             Time.timeScale = 1;
-            SceneManager.LoadScene("Oficina");
+            SceneManager.LoadScene("OficinaFix");
         }
         else if (GUI.Button(new Rect((this.mainWindowRect.width / 2.0f) - 50, (this.mainWindowRect.height / 2.0f) + 25, 100, 50), "Salir"))
         {
             Application.Quit();
         }
-        
     }
 
     private Rect CalculateCenterRect(float parentWidth, float parentHeight, float width, float height)
