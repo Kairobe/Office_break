@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         if (boostActive) currentspeed += _boostSpeed;
         if (coffeSecondsLeft != 0f) currentspeed += coffeSpeed;
         characterController.Move(direction * currentspeed * Time.deltaTime);
-        coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
+        if (verticalInput != 0 || horizontalInput != 0) coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
 
         if (_arma != "None")
         {
