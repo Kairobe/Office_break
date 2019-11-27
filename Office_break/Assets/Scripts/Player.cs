@@ -94,9 +94,11 @@ public class Player : MonoBehaviour
     {
         if (_arma == "Tirachinas")
         {
+            
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
             GameObject Municion = Instantiate(_borradorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+            
         }
     }
 
