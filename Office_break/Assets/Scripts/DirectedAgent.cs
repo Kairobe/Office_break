@@ -7,11 +7,11 @@ public class DirectedAgent : MonoBehaviour
     private NavMeshAgent agent;
 
     private List<Vector3> levelOneRoute = new List<Vector3> {
-        new Vector3(10.76f, 0.05f, -15.89f),
-        new Vector3(0.95f, 0.05f, -21.27f),
-        new Vector3(0.95f, 0.05f, -31.19f),
-        new Vector3(17.1f, 0.05f, -32.78f),
-        new Vector3(17.53f, 0.05f, -21.31f)
+        new Vector3(10.76f, 0.0f, -15.89f),
+        new Vector3(0.95f, 0.0f, -21.27f),
+        new Vector3(0.95f, 0.0f, -31.19f),
+        new Vector3(17.1f, 0.0f, -32.78f),
+        new Vector3(17.53f, 0.0f, -21.31f)
     };
 
     private int nextIndex = 0;
@@ -23,7 +23,7 @@ public class DirectedAgent : MonoBehaviour
 
     void Update()
     {
-        agent.speed = Random.Range(2.5f, 4f);
+        agent.speed = Random.Range(1.5f, 3f);
 
         if (agent.remainingDistance < 3)
         {
