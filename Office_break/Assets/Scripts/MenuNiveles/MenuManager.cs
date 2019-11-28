@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -21,11 +22,11 @@ public class MenuManager : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
     }
 
-    public void ShowScene(int level)
+    public void ShowScene(string sceneName)
     {
         /*if (currentMenu != null)
             currentMenu.IsOpen = false;
         currentMenu = null;*/
-        Application.LoadLevel(level);
+        SceneManager.LoadScene(sceneName);
     }
 }
