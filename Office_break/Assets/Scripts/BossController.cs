@@ -4,8 +4,6 @@ using UnityEngine.AI;
 public class BossController : MonoBehaviour
 {
     private bool hasDetectedPlayer = false;
-    private bool playAnimation = true;
-    private Animator animator;
     private NavMeshAgent agent;
     private GameObject player;
     private ElevatorController elevatorController;
@@ -35,7 +33,7 @@ public class BossController : MonoBehaviour
     {
         if (!hasDetectedPlayer)
         {
-            var randomNumber = Random.Range(1, 100);
+            int randomNumber = Random.Range(1, 150);
 
             if (randomNumber == 30)
             {

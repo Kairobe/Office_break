@@ -291,9 +291,11 @@ GameObject:
   - component: {fileID: 7851067205112637564}
   - component: {fileID: 2490747930248452300}
   - component: {fileID: 1117768524880733129}
+  - component: {fileID: 5964819885374849372}
+  - component: {fileID: 6146628067034951542}
   m_Layer: 0
   m_Name: municion
-  m_TagString: Untagged
+  m_TagString: MunicionLapiz
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,6 +361,35 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &5964819885374849372
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236405144441922681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.017320514, y: 0.02000001, z: 0.39499944}
+  m_Center: {x: 0.0000019073486, y: 0.0000019014731, z: 0.19749945}
+--- !u!54 &6146628067034951542
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236405144441922681}
+  serializedVersion: 2
+  m_Mass: 0.001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8327703078679825762
 GameObject:
   m_ObjectHideFlags: 0
