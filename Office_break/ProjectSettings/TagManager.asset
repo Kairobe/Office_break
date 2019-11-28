@@ -12,6 +12,8 @@ TagManager:
   - PropiedadesUi
   - Borrador
   - Enemigo
+  - Elevator
+  - Boss
   layers:
   - Default
   - TransparentFX

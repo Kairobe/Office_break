@@ -19,14 +19,4 @@ public class ElevatorController : MonoBehaviour
     {
         this.elevatorAnimator.SetBool("Open", openDoors);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        this.ManageDoors(true);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        this.ManageDoors(false);
-    }
 }

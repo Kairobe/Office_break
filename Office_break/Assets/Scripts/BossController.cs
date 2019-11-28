@@ -1,10 +1,16 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class BossController : MonoBehaviour
 {
+    private bool hasDetectedPlayer = false;
     private bool playAnimation = true;
     private Animator animator;
+    private NavMeshAgent agent;
+    private GameObject player;
+    private ElevatorController elevatorController;
+    private bool elevatorDoorsHasBeenOpened = false;
+    private ControladorUi controladorUi;
 
     [SerializeField]
     private Floor actualFloor;
@@ -14,37 +20,50 @@ public class BossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /// animator = this.GetComponent<Animator>();
-        actualFloor = Floor.Cafe;
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Awake()
+    {
+        this.player = GameObject.FindGameObjectWithTag("Player");
+        this.elevatorController = GameObject.FindGameObjectWithTag("Elevator").GetComponent<ElevatorController>();
+        this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playAnimation)
+        if (!hasDetectedPlayer)
         {
-            StartCoroutine(this.PlayAnimation());
+            var randomNumber = Random.Range(1, 100);
+
+            if (randomNumber == 30)
+            {
+                this.hasDetectedPlayer = true;
+            }
+        }
+        else
+        {
+            Vector3 playerPosition = this.player.transform.position;
+
+            if (Vector3.Distance(playerPosition, transform.position) < 10)
+            {
+                if (!elevatorDoorsHasBeenOpened)
+                {
+                    this.elevatorController.ManageDoors(true);
+                }
+
+                this.agent.SetDestination(playerPosition);
+            }
         }
     }
 
-    IEnumerator PlayAnimation()
+    private void OnTriggerEnter(Collider other)
     {
-        playAnimation = false;
-
-        int newFloor = Random.Range(0, 3);
-
-        // Simulate the floor changing time.
-        yield return new WaitForSeconds(3);
-
-        actualFloor = (Floor)newFloor;
-
-        // The random time to wait for the animation.
-        int randomWait = Random.Range(0, 2);
-        yield return new WaitForSeconds(randomWait);
-        MoveBossToElevator(actualFloor);
-
-        ///animator.Play("--ANIMATION NAME--");
-        playAnimation = true;
+        if (other.tag == "Player")
+        {
+            this.controladorUi.EndGame();
+        }
     }
 
     private void MoveBossToElevator(Floor currentFloor)
