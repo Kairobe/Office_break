@@ -19,7 +19,8 @@ public class CoffeMachine : MonoBehaviour
     {
         if (playerReloading)
         {
-            timeStayed += Time.deltaTime;
+            player.FillCoffe(.1f * Time.deltaTime);
+            /*timeStayed += Time.deltaTime;
             if (timeStayed >= 2f && !halfReloaded)
             {
                 player.FillCoffe(0.5f);
@@ -29,7 +30,7 @@ public class CoffeMachine : MonoBehaviour
             {
                 player.FillCoffe(1f);
                 fullReloaded = true;
-            }
+            }*/
         }
     }
 
