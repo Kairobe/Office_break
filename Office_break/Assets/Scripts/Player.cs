@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
                 Disparar();
             }
         }
-
     }
 
     public void Objeto(GameObject item)
@@ -95,11 +94,9 @@ public class Player : MonoBehaviour
     {
         if (_arma == "Tirachinas")
         {
-            
             float horizontalInput = Input.GetAxis("Horizontal");
             float verticalInput = Input.GetAxis("Vertical");
             GameObject Municion = Instantiate(_borradorPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            
         }
     }
 
@@ -113,12 +110,13 @@ public class Player : MonoBehaviour
         coffeSecondsLeft = Mathf.Min(coffeTimeMax, coffeSecondsLeft + (percentaje * coffeTimeMax));
     }
 
-    public float GetCoffeLeftSeconds(){
+    public float GetCoffeLeftSeconds()
+    {
         return coffeSecondsLeft;
     }
 
-    public float GetCoffeLeftPercentaje(){
-        return coffeSecondsLeft/coffeTimeMax;
+    public float GetCoffeLeftPercentaje()
+    {
+        return coffeSecondsLeft / coffeTimeMax;
     }
-
 }

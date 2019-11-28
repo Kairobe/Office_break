@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CoffeUI : MonoBehaviour {
-    
+public class CoffeUI : MonoBehaviour
+{
     public RectTransform coffeBar;
     private float coffePercentaje;
     public GameObject playerObject;
     private Player player;
     private bool playerSet = false;
 
-    void Start() {
+    void Start()
+    {
         player = playerObject.GetComponent<Player>();
     }
 
-    void LateUpdate() {
+    void LateUpdate()
+    {
         coffePercentaje = player.GetCoffeLeftPercentaje();
         coffeBar.localScale = new Vector3(coffePercentaje, 1f, 1f);
-        Debug.Log("UPDATE = " + coffePercentaje);
     }
 }
