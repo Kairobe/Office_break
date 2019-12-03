@@ -120,9 +120,7 @@ public class Nivel : MonoBehaviour
         availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
     }
 
-    /// <summary>
-    /// Increases the number of collected objects of the given type in the given units.
-    /// </summary>
+    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
@@ -147,6 +145,8 @@ public class Nivel : MonoBehaviour
         {
             if (this.lapNumber == this.raceLapsNumber)
             {
+                LevelData levelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
+                DataManager.SaveData(levelData);
                 this.controladorUi.EndGame();
             }
 
