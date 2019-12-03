@@ -44,7 +44,7 @@ public class BossController : MonoBehaviour
         {
             Vector3 playerPosition = this.player.transform.position;
 
-            if (Vector3.Distance(playerPosition, transform.position) < 10)
+            if (Vector3.Distance(playerPosition, transform.position) < 5)
             {
                 if (!elevatorDoorsHasBeenOpened)
                 {
