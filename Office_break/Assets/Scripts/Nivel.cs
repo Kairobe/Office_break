@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Nivel : MonoBehaviour
 {
@@ -147,7 +148,9 @@ public class Nivel : MonoBehaviour
             {
                 LevelData levelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
                 DataManager.SaveData(levelData);
-                this.controladorUi.EndGame();
+                //Para que vaya a la pantalla de fin de nivel:
+                SceneManager.LoadScene("FinDeNivel");
+                //this.controladorUi.EndGame();
             }
 
             this.lapNumber++;
