@@ -33,7 +33,7 @@ public class BossController : MonoBehaviour
     {
         if (!hasDetectedPlayer)
         {
-            int randomNumber = Random.Range(1, 150);
+            int randomNumber = Random.Range(1, 3000);
 
             if (randomNumber == 30)
             {
