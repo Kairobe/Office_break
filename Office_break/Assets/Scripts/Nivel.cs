@@ -147,9 +147,12 @@ public class Nivel : MonoBehaviour
             if (this.lapNumber == this.raceLapsNumber)
             {
                 LevelData levelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
+                CurrentLevelController.CurrentLevelData = levelData;
                 DataManager.SaveData(levelData);
+
                 //Para que vaya a la pantalla de fin de nivel:
                 SceneManager.LoadScene("FinDeNivel");
+
                 //this.controladorUi.EndGame();
             }
 

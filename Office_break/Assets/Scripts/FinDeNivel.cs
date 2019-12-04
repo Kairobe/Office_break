@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +6,8 @@ using UnityEngine.UI;
 public class FinDeNivel : MonoBehaviour
 {
     private string textoEscrito;
-     Text texto;
+    private Text texto;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,26 +15,27 @@ public class FinDeNivel : MonoBehaviour
         //DataManager.SaveData(levelData);
         texto = GetComponent<Text>();
 
-        setTexto();
-
+        SetTexto();
     }
 
     // Update is called once per frame
 
-    private void setTexto()
+    private void SetTexto()
     {
-        LevelData datos = DataManager.LoadData("admin");
-       // Debug.Log(datos.playerAlias);
+        LevelData datos = CurrentLevelController.CurrentLevelData;
+
+        // Debug.Log(datos.playerAlias);
         textoEscrito = "Enhorabuena " + datos.playerAlias + "!\n \n";
         textoEscrito += "Has conseguido " + datos.collectedBriefcases + " maletines!\n \n";
         textoEscrito += "Tambien has conseguido " + datos.collectedClips + " clips!\n \n";
-       
+
         texto.text = textoEscrito;
     }
+
     void Update()
     {
-        
     }
+
     public void Quit()
     {
         Application.Quit();
@@ -49,23 +50,19 @@ public class FinDeNivel : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void funcionalidadPorHacer()
+    public void FuncionalidadPorHacer()
     {
-        LevelData datos = DataManager.LoadData("admin");
         //Debug.Log(datos.playerAlias);
         textoEscrito = "Lo sentimos, esta funcionalidad aun no esta implementada :(";
 
         //texto.text = textoEscrito;
-        texto.GetComponent<UnityEngine.UI.Text>().text = textoEscrito;
+        texto.GetComponent<Text>().text = textoEscrito;
         StartCoroutine("MantenerMensaje");
     }
 
     private IEnumerator MantenerMensaje()
     {
-        
-
         yield return new WaitForSeconds(2);
-        setTexto();
+        SetTexto();
     }
-
 }
