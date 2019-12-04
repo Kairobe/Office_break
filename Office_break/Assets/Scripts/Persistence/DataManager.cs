@@ -9,23 +9,27 @@ public static class DataManager
     public static void SaveData(LevelData levelData)
     {
         LevelData existingData = LoadData(levelData.playerAlias);
+        LevelData currentLevelData = levelData;
 
         if (existingData != null)
         {
-            Debug.Log(existingData);
-            Debug.Log(existingData.collectedBriefcases);
-            levelData.collectedBriefcases += existingData.collectedBriefcases;
-            levelData.collectedClips += existingData.collectedClips;
+            int totalClips = levelData.collectedClips + existingData.collectedClips;
+            int totalBriefCases = levelData.collectedBriefcases + existingData.collectedBriefcases;
+
+            currentLevelData = new LevelData(levelData.playerAlias, totalClips, totalBriefCases)
+            {
+                boughtWeapons = levelData.boughtWeapons
+            };
         }
 
-        string path = $"{Application.persistentDataPath}/{levelData.playerAlias}.data";
+        string path = $"{Application.persistentDataPath}/{currentLevelData.playerAlias}.data";
 
         using (StreamWriter file = File.CreateText(path))
         {
             JsonSerializer serializer = new JsonSerializer();
 
             //serialize object directly into file stream
-            serializer.Serialize(file, levelData);
+            serializer.Serialize(file, currentLevelData);
         }
     }
 
