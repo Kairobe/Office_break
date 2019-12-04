@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class LevelData
 {
     public string playerAlias;
     public int collectedClips, collectedBriefcases;
+    public List<string> boughtWeapons;
 
     /// <summary> Saves the level data. </summary>
     /// <param name="playerAlias"> The alias of the player associated with the given data. </param>
@@ -19,5 +21,6 @@ public class LevelData
         this.playerAlias = playerAlias;
         this.collectedClips = collectedClips;
         this.collectedBriefcases = collectedBriefcases;
+        this.boughtWeapons = new List<string>();
     }
 }
