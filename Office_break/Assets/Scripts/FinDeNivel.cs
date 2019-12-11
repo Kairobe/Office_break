@@ -24,12 +24,16 @@ public class FinDeNivel : MonoBehaviour
     {
         LevelData datos = CurrentLevelController.CurrentLevelData;
 
+        if (texto.tag.Equals("FinDeNivelTextClip")) {
+            texto.text = "x" + datos.collectedClips;
+        } else if (texto.tag.Equals("FinDeNivelTextMaletin")) {
+            texto.text = "x" + datos.collectedBriefcases;
+        } else
+        {
+            texto.text = "Enhorabuena " + datos.playerAlias + "!";
+        }
         // Debug.Log(datos.playerAlias);
-        textoEscrito = "Enhorabuena " + datos.playerAlias + "!\n \n";
-        textoEscrito += "Has conseguido " + datos.collectedBriefcases + " maletines!\n \n";
-        textoEscrito += "Tambien has conseguido " + datos.collectedClips + " clips!\n \n";
-
-        texto.text = textoEscrito;
+        
     }
 
     void Update()
