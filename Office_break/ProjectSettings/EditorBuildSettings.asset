@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inventario.unity
     guid: 3243e9cc1126ded4bafe37f4ea79f181
+  - enabled: 1
+    path: Assets/Scenes/FinDeNivel.unity
+    guid: 6d39a188103f0f447b0f87e8fd74b643
   m_configObjects: {}

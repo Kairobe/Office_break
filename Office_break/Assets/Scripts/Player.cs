@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         direction = new Vector3(verticalInput * Mathf.Sin(transform.eulerAngles.y * 0.01745f), 0.0f, verticalInput * Mathf.Cos(transform.eulerAngles.y * 0.01745f));
-        rotation = new Vector3(0, horizontalInput, 0);
+        rotation = new Vector3(0, horizontalInput * 1.5f, 0);
         transform.Rotate(rotation * currentspeed * 0.7f);
 
         currentspeed = _baseSpeed;
