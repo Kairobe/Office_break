@@ -39,7 +39,7 @@ public class FinDeNivel : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
     }
 
     public void ShowScene(string sceneName)
