@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BriefcasesManager : MonoBehaviour
@@ -16,7 +17,7 @@ public class BriefcasesManager : MonoBehaviour
     private GameObject leftPanelGameObject, rightPanelGameObject, briefcaseIndexGameObject;
 
     private Button leftButton, rightButton, openBriefcaseButton;
-    private Text briefcaseIndexText;
+    private Text briefcaseIndexText, itemsObtainedText;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class BriefcasesManager : MonoBehaviour
         this.rightButton = this.rightButtonGameObject.GetComponentInChildren<Button>();
         this.openBriefcaseButton = this.openBriefcaseGameObject.GetComponentInChildren<Button>();
         this.briefcaseIndexText = this.briefcaseIndexGameObject.GetComponentInChildren<Text>();
+        this.itemsObtainedText = this.openBriefcaseContainerGameObject.GetComponentsInChildren<Text>().FirstOrDefault(t => t.name == "ObtainedItemsText");
 
         this.leftButton.onClick.AddListener(() => LeftButtonClicked());
         this.rightButton.onClick.AddListener(() => RightButtonClicked());
@@ -103,6 +105,8 @@ public class BriefcasesManager : MonoBehaviour
     {
         this.chooseBriefcaseContainerGameObject.SetActive(false);
         this.openBriefcaseContainerGameObject.SetActive(true);
+
+        this.GenerateRandomObjectCollection();
     }
 
     private void UpdateBriefcaseIndexText()
@@ -112,5 +116,13 @@ public class BriefcasesManager : MonoBehaviour
 
     private void GenerateRandomObjectCollection()
     {
+        int numberOfItemsToGenerate = Random.Range(3, 20);
+
+        this.itemsObtainedText.text = $"Enhorabuena! Has obtenido {numberOfItemsToGenerate} clips!";
+
+        UserData currentUserData = DataManager.LoadData("admin");
+        currentUserData.Clips += numberOfItemsToGenerate;
+
+        DataManager.SaveData(currentUserData);
     }
 }

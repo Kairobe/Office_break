@@ -146,9 +146,9 @@ public class Nivel : MonoBehaviour
         {
             if (this.lapNumber == this.raceLapsNumber)
             {
-                LevelData levelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
-                CurrentLevelController.CurrentLevelData = levelData;
-                DataManager.SaveData(levelData);
+                LevelData currentLevelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
+                CurrentLevelController.CurrentLevelData = currentLevelData;
+                UpdateCurrentUserData(currentLevelData);
 
                 //Para que vaya a la pantalla de fin de nivel:
                 SceneManager.LoadScene("FinDeNivel");
@@ -171,6 +171,18 @@ public class Nivel : MonoBehaviour
         this.currentLevelCheckPoints[currentCheckPoint].SetActive(false);
         this.currentLevelCheckPoints[nextCheckPoint].SetActive(true);
         this.activeCheckPoint = nextCheckPoint;
+    }
+
+    private static void UpdateCurrentUserData(LevelData currentLevelData)
+    {
+        UserData currentUserData = DataManager.LoadData("admin");
+
+        if (currentUserData is null)
+        {
+            currentUserData = new UserData("admin");
+        }
+
+        currentUserData.UpdateUserData(currentLevelData);
     }
 
     /// <summary> Initializes the different objects in random positions in the scene. </summary>

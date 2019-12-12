@@ -33,12 +33,10 @@ public class InventoryManager : MonoBehaviour
         UpdateWeaponBuyStatus(selectedWeapon);
 
         Text clipsText = texts.FirstOrDefault(t => t.name.Equals("NeededClips"));
-        Text briefcasesText = texts.FirstOrDefault(t => t.name.Equals("NeededBriefcases"));
 
         clipsText.text = $"Clips: x{weaponRequirementes.NeededClips}";
-        briefcasesText.text = $"Maletines: x{weaponRequirementes.NeededBriefcases}";
 
-        ManageWeaponRequirementsRepresentation(weaponRequirementes, clipsText, briefcasesText);
+        ManageWeaponRequirementsRepresentation(weaponRequirementes, clipsText);
     }
 
     private void BuyButtonClicked()
@@ -49,15 +47,11 @@ public class InventoryManager : MonoBehaviour
 
         WeaponRequirements weaponRequirements = this.availableWeapons[weaponName];
 
-        LevelData existingUserData = DataManager.LoadData("admin");
+        UserData existingUserData = DataManager.LoadData("admin");
 
-        LevelData userDataChanges = new LevelData("admin", -weaponRequirements.NeededClips, -weaponRequirements.NeededBriefcases)
-        {
-            boughtWeapons = existingUserData.boughtWeapons
-        };
-        userDataChanges.boughtWeapons.Add(weaponName);
+        existingUserData.BoughtWeapons.Add(weaponName);
 
-        DataManager.SaveData(userDataChanges);
+        DataManager.SaveData(existingUserData);
 
         UpdateWeaponBuyStatus(weaponName);
     }
@@ -66,20 +60,17 @@ public class InventoryManager : MonoBehaviour
     {
         WeaponRequirements tirachinas = new WeaponRequirements
         {
-            NeededBriefcases = 0,
             NeededClips = 0,
         };
 
         WeaponRequirements regla = new WeaponRequirements
         {
-            NeededBriefcases = 0,
-            NeededClips = 0,
+            NeededClips = 15,
         };
 
         WeaponRequirements ballesta = new WeaponRequirements
         {
-            NeededBriefcases = 5,
-            NeededClips = 10,
+            NeededClips = 30,
         };
 
         availableWeapons = new Dictionary<string, WeaponRequirements>
@@ -94,7 +85,7 @@ public class InventoryManager : MonoBehaviour
     /// <param name="selectedWeapon"> The weapon to update the status. </param>
     private void UpdateWeaponBuyStatus(string selectedWeapon)
     {
-        bool weaponAlreadyBought = DataManager.LoadData("admin").boughtWeapons.Contains(selectedWeapon);
+        bool weaponAlreadyBought = DataManager.LoadData("admin").BoughtWeapons.Contains(selectedWeapon);
 
         if (weaponAlreadyBought)
         {
@@ -108,12 +99,12 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private void ManageWeaponRequirementsRepresentation(WeaponRequirements weaponRequirementes, Text clipsText, Text briefcasesText)
+    private void ManageWeaponRequirementsRepresentation(WeaponRequirements weaponRequirementes, Text clipsText)
     {
-        LevelData userData = DataManager.LoadData("admin");
+        UserData userData = DataManager.LoadData("admin");
         bool canBuyWeapon = true;
 
-        if (userData.collectedClips < weaponRequirementes.NeededClips)
+        if (userData.Clips < weaponRequirementes.NeededClips)
         {
             canBuyWeapon = false;
             clipsText.color = Color.red;
@@ -121,16 +112,6 @@ public class InventoryManager : MonoBehaviour
         else
         {
             clipsText.color = Color.black;
-        }
-
-        if (userData.collectedBriefcases < weaponRequirementes.NeededBriefcases)
-        {
-            canBuyWeapon = false;
-            briefcasesText.color = Color.red;
-        }
-        else
-        {
-            briefcasesText.color = Color.black;
         }
 
         buyButton.gameObject.SetActive(canBuyWeapon);
