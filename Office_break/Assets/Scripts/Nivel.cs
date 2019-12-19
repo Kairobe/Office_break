@@ -151,7 +151,7 @@ public class Nivel : MonoBehaviour
                 UpdateCurrentUserData(currentLevelData);
 
                 //Para que vaya a la pantalla de fin de nivel:
-                SceneManager.LoadScene("FinDeNivel");
+                SceneManager.LoadScene(4);
 
                 //this.controladorUi.EndGame();
             }
