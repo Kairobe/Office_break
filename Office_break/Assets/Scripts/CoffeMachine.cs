@@ -2,35 +2,14 @@
 
 public class CoffeMachine : MonoBehaviour
 {
-    private bool playerReloading, halfReloaded, fullReloaded;
-    private float timeStayed;
     private Player player;
 
     public void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.name == "Player")
         {
-            playerReloading = true;
             if (player == null) player = collider.transform.GetComponent<Player>();
-        }
-    }
-
-    public void Update()
-    {
-        if (playerReloading)
-        {
-            player.FillCoffe(.1f * Time.deltaTime);
-            /*timeStayed += Time.deltaTime;
-            if (timeStayed >= 2f && !halfReloaded)
-            {
-                player.FillCoffe(0.5f);
-                halfReloaded = true;
-            }
-            if (timeStayed >= 5f && !fullReloaded)
-            {
-                player.FillCoffe(1f);
-                fullReloaded = true;
-            }*/
+            player.reloadingCoffe = true;
         }
     }
 
@@ -38,10 +17,7 @@ public class CoffeMachine : MonoBehaviour
     {
         if (collider.gameObject.name == "Player")
         {
-            playerReloading = false;
-            halfReloaded = false;
-            fullReloaded = false;
-            timeStayed = 0f;
+            player.reloadingCoffe = false;
         }
     }
 }

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private Vector3 direction;
 
     private Vector3 rotation;
+    public bool reloadingCoffe;
 
     [SerializeField] private float coffeSecondsLeft;
     [SerializeField] private float coffeTimeMax = 40;
@@ -60,6 +61,11 @@ public class Player : MonoBehaviour
             {
                 Disparar();
             }
+        }
+
+        if (reloadingCoffe)
+        {
+            FillCoffe(.1f * Time.deltaTime);
         }
     }
 
