@@ -7,7 +7,7 @@ public class BossController : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject player;
     private ElevatorController elevatorController;
-    private bool elevatorDoorsHasBeenOpened = false;
+    private bool elevatorDoorsHasBeenOpened = false, tutorial = false;
     private ControladorUi controladorUi;
 
     [SerializeField]
@@ -28,39 +28,49 @@ public class BossController : MonoBehaviour
         this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();
     }
 
+    public void esTutorial()
+    {
+        tutorial = true;
+    }
+
     // Update is called once per frame
     void Update()
-    {
-        if (!hasDetectedPlayer)
+    { if (!tutorial)
         {
-            int randomNumber = Random.Range(1, 3000);
-
-            if (randomNumber == 30)
+            if (!hasDetectedPlayer)
             {
-                this.hasDetectedPlayer = true;
-            }
-        }
-        else
-        {
-            Vector3 playerPosition = this.player.transform.position;
+                int randomNumber = Random.Range(1, 3000);
 
-            if (Vector3.Distance(playerPosition, transform.position) < 5)
-            {
-                if (!elevatorDoorsHasBeenOpened)
+                if (randomNumber == 30)
                 {
-                    this.elevatorController.ManageDoors(true);
+                    this.hasDetectedPlayer = true;
                 }
+            }
+            else
+            {
+                Vector3 playerPosition = this.player.transform.position;
 
-                this.agent.SetDestination(playerPosition);
+                if (Vector3.Distance(playerPosition, transform.position) < 5)
+                {
+                    if (!elevatorDoorsHasBeenOpened)
+                    {
+                        this.elevatorController.ManageDoors(true);
+                    }
+
+                    this.agent.SetDestination(playerPosition);
+                }
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (!tutorial)
         {
-            this.controladorUi.EndGame();
+            if (other.tag == "Player")
+            {
+                this.controladorUi.EndGame();
+            }
         }
     }
 

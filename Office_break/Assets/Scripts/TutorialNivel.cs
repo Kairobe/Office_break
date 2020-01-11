@@ -40,12 +40,16 @@ public class TutorialNivel : MonoBehaviour
 
     [SerializeField]
     private int raceLapsNumber;
+    
+    public BossController bo;
+
 
     // Start is called before the first frame update
     void Start()
     {
-       // TextoTutorial = this.GetComponent<Text>();
-
+        bo = GameObject.FindObjectOfType(typeof(BossController)) as BossController;
+        bo.esTutorial();
+        // TextoTutorial = this.GetComponent<Text>();
         textoEscrito = "Bienvenido/a al tutorial!";
         textoEscrito = textoEscrito + "\n (Pulsa cualquier tecla para seguir.)";
         faseDelTutorial = 0;
@@ -188,7 +192,7 @@ public class TutorialNivel : MonoBehaviour
                 textoEscrito = "Y con esto ya puedes empezar a jugar. Pulsa enter para ir al menú principal :)";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
-                // faseDelTutorial = 9;
+                faseDelTutorial = 9;
             }
         }
         if (faseDelTutorial == 9)
