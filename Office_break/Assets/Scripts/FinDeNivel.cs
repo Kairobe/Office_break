@@ -24,16 +24,20 @@ public class FinDeNivel : MonoBehaviour
     {
         LevelData datos = CurrentLevelController.CurrentLevelData;
 
-        if (texto.tag.Equals("FinDeNivelTextClip")) {
+        if (texto.tag.Equals("FinDeNivelTextClip"))
+        {
             texto.text = "x" + datos.collectedClips;
-        } else if (texto.tag.Equals("FinDeNivelTextMaletin")) {
+        }
+        else if (texto.tag.Equals("FinDeNivelTextMaletin"))
+        {
             texto.text = "x" + datos.collectedBriefcases;
-        } else
+        }
+        else
         {
             texto.text = "Enhorabuena " + datos.playerAlias + "!";
         }
+
         // Debug.Log(datos.playerAlias);
-        
     }
 
     void Update()
@@ -43,6 +47,7 @@ public class FinDeNivel : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+
         //UnityEditor.EditorApplication.isPlaying = false;
     }
 

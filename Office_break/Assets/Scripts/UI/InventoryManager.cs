@@ -27,16 +27,7 @@ public class InventoryManager : MonoBehaviour
 
     private void WeaponButtonClicked(string selectedWeapon)
     {
-        WeaponRequirements weaponRequirementes = this.availableWeapons[selectedWeapon];
-        IEnumerable<Text> texts = this.gameObject.GetComponentsInChildren<Text>();
-
-        UpdateWeaponBuyStatus(selectedWeapon);
-
-        Text clipsText = texts.FirstOrDefault(t => t.name.Equals("NeededClips"));
-
-        clipsText.text = $"Clips: x{weaponRequirementes.NeededClips}";
-
-        ManageWeaponRequirementsRepresentation(weaponRequirementes, clipsText);
+        ShowWeaponBuyStatus(selectedWeapon);
     }
 
     private void BuyButtonClicked()
@@ -53,7 +44,7 @@ public class InventoryManager : MonoBehaviour
 
         DataManager.SaveData(existingUserData);
 
-        UpdateWeaponBuyStatus(weaponName);
+        ShowWeaponBuyStatus(weaponName);
     }
 
     private void InitializeAvailableWeapons()
@@ -81,9 +72,9 @@ public class InventoryManager : MonoBehaviour
         };
     }
 
-    /// <summary> Updates the status of the given weapon. </summary>
-    /// <param name="selectedWeapon"> The weapon to update the status. </param>
-    private void UpdateWeaponBuyStatus(string selectedWeapon)
+    /// <summary> Shows the status of the given weapon. </summary>
+    /// <param name="selectedWeapon"> The weapon to show the status. </param>
+    private void ShowWeaponBuyStatus(string selectedWeapon)
     {
         bool weaponAlreadyBought = DataManager.LoadData("admin").BoughtWeapons.Contains(selectedWeapon);
 
@@ -96,6 +87,15 @@ public class InventoryManager : MonoBehaviour
         {
             this.weaponAlreadyBoughtGameObject.SetActive(false);
             this.buyGameObject.SetActive(true);
+
+            WeaponRequirements weaponRequirementes = this.availableWeapons[selectedWeapon];
+            IEnumerable<Text> texts = this.gameObject.GetComponentsInChildren<Text>();
+
+            Text clipsText = texts.FirstOrDefault(t => t.gameObject.name.Equals("NeededClips"));
+
+            clipsText.text = $"Clips: x{weaponRequirementes.NeededClips}";
+
+            ManageWeaponRequirementsRepresentation(weaponRequirementes, clipsText);
         }
     }
 
