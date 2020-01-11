@@ -43,6 +43,10 @@ public class TutorialNivel : MonoBehaviour
     
     public BossController bo;
 
+    private Vector3 posMal = new Vector3(17f, 0.09f, -20f);
+
+    private bool MaletinPillado = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,18 +61,19 @@ public class TutorialNivel : MonoBehaviour
 
         player = GameObject.FindWithTag("Player");
 
-       
-        /*InitializePositionsAndRotation();
+        //Instantiate(maletinPrefab, posMal, Quaternion.identity);
+
+        //InitializePositionsAndRotation();
 
         InitializeObjectsToCollect();
 
-        InitializeMaximumNumberOfInstancesByGameObject();
+        //InitializeMaximumNumberOfInstancesByGameObject();
 
-        InitializeGameObjectPrefabs();
+        //InitializeGameObjectPrefabs();
 
-        InitializeObjects();
+        //InitializeObjects();
 
-        this.controladorUi.UpdateLapCounter(this.lapNumber, this.raceLapsNumber);*/
+        //this.controladorUi.UpdateLapCounter(this.lapNumber, this.raceLapsNumber);
     }
 
     private void Awake()
@@ -126,10 +131,12 @@ public class TutorialNivel : MonoBehaviour
             //StartCoroutine(EsperaTutorial());
             if (Input.GetKeyDown(KeyCode.Return))
             {
-
-                textoEscrito = "Puede que encuentres clips o maletines mientras te mueves. \n Deberías recogerlos. (Sirven para crear armas.) \n \n (Pulsa enter para continuar)";
+                StartCoroutine(EsperaTutorial());
+                textoEscrito = "Puede que encuentres clips o maletines mientras te mueves. \n Deberías recogerlos. (Sirven para crear armas.) \n ¡Prueba a coger el maletín!";
                 TextoTutorial.text = textoEscrito;
-                faseDelTutorial = 4;
+                Instantiate(maletinPrefab, posMal, Quaternion.identity);
+                //faseDelTutorial = 4;
+               
             }
            
             
@@ -138,31 +145,33 @@ public class TutorialNivel : MonoBehaviour
         {
             //StartCoroutine(EsperaTutorial());
             //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (MaletinPillado)
             {
                 
-                textoEscrito = "Debes ser más rápido que el enemigo y esquivar al jefe.  \n \n \n \n (Pulsa enter para continuar)";
+                textoEscrito = "¡Bien hecho! \n \n Además, de ese ascensor puede salir  jefe. (Aunque ahora no)  \n \n ";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
+                //StartCoroutine(EsperaTutorial());
+                
                 //faseDelTutorial = 5;
             }
         }
         if (faseDelTutorial == 5)
         {
             
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
+            
 
                 textoEscrito = "Para superar a tus enemigos, puedes dispararles. \n Prueba a pulsar espacio.";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
-                //faseDelTutorial = 6;
-            }
+                //Debug.Log(faseDelTutorial);
+            //faseDelTutorial = 6;
+
         }
         if (faseDelTutorial == 6)
         {
             //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) )
             {
 
                 textoEscrito = "Bien hecho! \n En tus aventuras verás objetos que no son clips. Te darán ventajas útiles. \n \n (Pulsa enter para continuar)";
@@ -192,7 +201,7 @@ public class TutorialNivel : MonoBehaviour
                 textoEscrito = "Y con esto ya puedes empezar a jugar. Pulsa enter para ir al menú principal :)";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
-                faseDelTutorial = 9;
+                //faseDelTutorial = 9;
             }
         }
         if (faseDelTutorial == 9)
@@ -227,6 +236,16 @@ public class TutorialNivel : MonoBehaviour
         else if (faseDelTutorial == 0)
         {
             yield return new WaitForSeconds(2);
+        }
+        else if (faseDelTutorial == 4)
+        {
+            yield return new WaitForSeconds(1);
+            faseDelTutorial = 5;
+        }
+        else if (faseDelTutorial == 5)
+        {
+            yield return new WaitForSeconds(1);
+            faseDelTutorial = 6;
         }
         else
         {
@@ -380,4 +399,11 @@ public class TutorialNivel : MonoBehaviour
             }
         }
     }
+
+
+    public void pillarMaletin()
+    {
+        MaletinPillado = true;
+    }
+       
 }
