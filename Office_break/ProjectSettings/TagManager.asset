@@ -17,6 +17,7 @@ TagManager:
   - MunicionLapiz
   - FinDeNivelTextMaletin
   - FinDeNivelTextClip
+  - Oponent
   layers:
   - Default
   - TransparentFX
