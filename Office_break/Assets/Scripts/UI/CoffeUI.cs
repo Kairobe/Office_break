@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class CoffeUI : MonoBehaviour
 {
@@ -6,13 +7,14 @@ public class CoffeUI : MonoBehaviour
     private float coffePercentaje;
     public GameObject playerObject;
     private Player player;
-    public Transform reloadingUI;
+    public Image tmp;
+    private float animationStatus;
     private bool playerSet = false;
 
     void Start()
     {
         player = playerObject.GetComponent<Player>();
-        reloadingUI.localPosition = new Vector3(reloadingUI.localPosition.x, -2000, reloadingUI.localPosition.z);
+        animationStatus = 0;
     }
 
     void LateUpdate()
@@ -20,9 +22,12 @@ public class CoffeUI : MonoBehaviour
         coffePercentaje = player.GetCoffeLeftPercentaje();
         coffeBar.localScale = new Vector3(coffePercentaje, 1f, 1f);
         if(player.reloadingCoffe){
-        reloadingUI.localPosition = new Vector3(reloadingUI.localPosition.x, -20, reloadingUI.localPosition.z);
+            animationStatus += Time.deltaTime;
+            if (animationStatus > 1) animationStatus -= 1;
         }else{
-        reloadingUI.localPosition = new Vector3(reloadingUI.localPosition.x, -2000, reloadingUI.localPosition.z);
+            animationStatus = 0;
         }
+
+        tmp.fillAmount = animationStatus;
     }
 }

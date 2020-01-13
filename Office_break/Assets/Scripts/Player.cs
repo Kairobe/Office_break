@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float coffeTimeMax = 40;
     [SerializeField] private float coffeSpeed = 2f;
     private bool boostActive = false;
+    public float boostLeft = 0;
+    public int boostMax = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -50,10 +52,12 @@ public class Player : MonoBehaviour
         transform.Rotate(rotation * currentspeed * 0.7f);
 
         currentspeed = _baseSpeed;
-        if (boostActive) currentspeed += _boostSpeed;
+        if (boostLeft > 0) currentspeed += _boostSpeed;
         if (coffeSecondsLeft != 0f) currentspeed += coffeSpeed;
         characterController.Move(direction * currentspeed * Time.deltaTime);
+
         if (verticalInput != 0 || horizontalInput != 0) coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
+        boostLeft = Mathf.Max(boostLeft - Time.deltaTime, 0);
 
         if (_arma != "None")
         {
@@ -77,23 +81,14 @@ public class Player : MonoBehaviour
 
             if (tagObjeto == "Extintor")
             {
-                var coroutine = IncreaseSpeed(3);
-
-                StartCoroutine(coroutine);
+                IncreaseSpeed(boostMax);
             }
         }
     }
 
-    public IEnumerator IncreaseSpeed(int seconds)
+    public void IncreaseSpeed(int seconds)
     {
-        boostActive = true;
-
-        for (int i = 0; i < seconds; i++)
-        {
-            yield return new WaitForSeconds(1);
-        }
-
-        boostActive = false;
+        boostLeft = seconds;
     }
 
     public void Disparar()
