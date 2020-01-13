@@ -206,7 +206,7 @@ public class TutorialNivel : MonoBehaviour
         }
         if (faseDelTutorial == 9)
         {
-            StartCoroutine(EsperaTutorial());
+           // StartCoroutine(EsperaTutorial());
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
