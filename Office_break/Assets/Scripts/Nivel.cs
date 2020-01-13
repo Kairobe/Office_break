@@ -13,6 +13,9 @@ public class Nivel : MonoBehaviour
     private GameObject clipPrefab, maletinPrefab, extintorPrefab;
 
     [SerializeField]
+    private GameObject[] playerGameObjects;
+
+    [SerializeField]
     private int clipMaxNumber, maletinMaxNumber, extintorMaxNumber = 0;
 
     public List<(Vector3 position, int rotation)> availablePositions;
@@ -24,6 +27,8 @@ public class Nivel : MonoBehaviour
     private int activeCheckPoint = 0;
 
     private int lapNumber = 0;
+
+    private string currentPosition = "1/2";
 
     [SerializeField]
     private int raceLapsNumber;
@@ -65,6 +70,33 @@ public class Nivel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int playerPosition = this.GetPlayerPositionInGame();
+        this.currentPosition = $"{playerPosition}/{this.playerGameObjects.Length}";
+
+        Debug.Log(this.currentPosition);
+    }
+
+    /// <summary> Gets the position of the player in the current race. </summary>
+    /// <returns> The position of the player in the current race. </returns>
+    private int GetPlayerPositionInGame()
+    {
+        List<(float distance, bool isPlayer)> distancesToNextCheckpointTuple = new List<(float distance, bool isPlayer)>();
+
+        foreach (GameObject playerGameObject in playerGameObjects)
+        {
+            var distance = Vector3.Distance(this.currentLevelCheckPoints[this.activeCheckPoint].transform.position, playerGameObject.transform.position);
+
+            bool isPlayer = false;
+
+            if (playerGameObject.CompareTag("Player"))
+            {
+                isPlayer = true;
+            }
+
+            distancesToNextCheckpointTuple.Add((distance, isPlayer));
+        }
+
+        return distancesToNextCheckpointTuple.OrderBy(d => d.distance).Select(d => d.isPlayer).ToList().FindIndex(b => b == true) + 1;
     }
 
     /// <summary>
@@ -121,7 +153,9 @@ public class Nivel : MonoBehaviour
         availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
     }
 
-    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
+    /// <summary>
+    /// Increases the number of collected objects of the given type in the given units.
+    /// </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
@@ -135,17 +169,22 @@ public class Nivel : MonoBehaviour
         this.controladorUi.UpdateObjectCount(objectType, this.collectedObjectNumber[objectType]);
     }
 
-    public void ActivateNextCheckPoint(int checkPointPassedNumber)
+    public void ActivateNextCheckPoint(int passedCheckPointNumber, bool isPlayer)
     {
-        if (checkPointPassedNumber != this.activeCheckPoint)
+        if (passedCheckPointNumber != this.activeCheckPoint)
         {
             return;
         }
 
-        if (checkPointPassedNumber == 0)
+        if (passedCheckPointNumber == 0)
         {
             if (this.lapNumber == this.raceLapsNumber)
             {
+                if (!isPlayer)
+                {
+                    return;
+                }
+
                 LevelData currentLevelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
                 CurrentLevelController.CurrentLevelData = currentLevelData;
                 UpdateCurrentUserData(currentLevelData);

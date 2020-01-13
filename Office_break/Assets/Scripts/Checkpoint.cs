@@ -36,9 +36,11 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        string tagName = other.tag;
+
+        if (tagName == "Player" || tagName == "Oponent")
         {
-            this.nivel.ActivateNextCheckPoint(this.index);
+            this.nivel.ActivateNextCheckPoint(this.index, tagName == "Player");
         }
     }
 }
