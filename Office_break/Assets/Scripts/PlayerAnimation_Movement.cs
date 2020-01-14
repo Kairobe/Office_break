@@ -38,13 +38,13 @@ public class PlayerAnimation_Movement : StateMachineBehaviour
     {
         base.OnStateUpdate(animator, animatorStateInfo, layerIndex);
 
-        if (Input.GetKeyDown(KeyCode.UpArrow)) animator.SetBool("isMoving", true);
-        if (Input.GetKeyUp(KeyCode.UpArrow)) animator.SetBool("isMoving", false);
+        if (Input.GetAxis("Vertical") > 0) animator.SetBool("isMoving", true);
+        if (Input.GetAxis("Vertical") == 0) animator.SetBool("isMoving", false);
 
-        if (Input.GetKeyDown(KeyCode.RightArrow)) animator.SetBool("isTurningRight", true);
-        if (Input.GetKeyUp(KeyCode.RightArrow)) animator.SetBool("isTurningRight", false);
+        if (Input.GetAxis("Horizontal") > 0) animator.SetBool("isTurningRight", true);
+        if (Input.GetAxis("Horizontal") == 0) animator.SetBool("isTurningRight", false);
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) animator.SetBool("isTurningLeft", true);
-        if (Input.GetKeyUp(KeyCode.LeftArrow)) animator.SetBool("isTurningLeft", false);
+        if (Input.GetAxis("Horizontal") < 0) animator.SetBool("isTurningLeft", true);
+        if (Input.GetAxis("Horizontal") == 0) animator.SetBool("isTurningLeft", false);
     }
 }

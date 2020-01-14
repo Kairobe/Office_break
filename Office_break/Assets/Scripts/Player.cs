@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public int boostMax = 3;
 
     private ParticleSystem particulasExtintor;
+    private AudioSource sonidoExtintor;
     private GameObject animationExtintor;
 
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
 
         this.particulasExtintor = GameObject.FindGameObjectWithTag("ExtinguisherParticleSystem").GetComponent<ParticleSystem>();
         this.animationExtintor = GameObject.FindGameObjectWithTag("PlayerExtinguisher");
+        this.sonidoExtintor = animationExtintor.GetComponent<AudioSource>();
         this.animationExtintor.SetActive(false);
     }
 
@@ -65,10 +67,11 @@ public class Player : MonoBehaviour
         if (verticalInput != 0 || horizontalInput != 0) coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
         boostLeft = Mathf.Max(boostLeft - Time.deltaTime, 0);
 
-        if (boostLeft <= 0)
+        if (boostLeft <= 0 && this.animationExtintor != null)
         {
             this.animationExtintor.SetActive(false);
             this.particulasExtintor.Stop();
+            this.sonidoExtintor.Stop();
         }
 
         if (_arma != "None")
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
         {
             this.particulasExtintor.Play();
             this.animationExtintor.SetActive(true);
+            this.sonidoExtintor.Play();
         }
 
         boostLeft = seconds;
