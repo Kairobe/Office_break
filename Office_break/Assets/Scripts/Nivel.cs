@@ -138,43 +138,7 @@ public class Nivel : MonoBehaviour
         };
     }
 
-    /// <summary>
-    /// Initializes the available positions and the rotation that must be applied to the created
-    /// Game Object.
-    /// </summary>
-    private void InitializePositionsAndRotation()
-    {
-        availablePositions = new List<(Vector3 position, int rotation)>();
-
-        if( SceneManager.GetActiveScene().name == "OficinaFix"){
-            availablePositions.Add((new Vector3(17.5f, 0.5f, -20), 0));
-            availablePositions.Add((new Vector3(17.5f, 0.5f, -28), 0));
-            availablePositions.Add((new Vector3(16, 0.5f, -32.5f), 90));
-            availablePositions.Add((new Vector3(10f, 0.5f, -32.5f), 90));
-            availablePositions.Add((new Vector3(1, 0.5f, -33), 0));
-            availablePositions.Add((new Vector3(1, 0.5f, -24.5f), 0));
-            availablePositions.Add((new Vector3(-1.5f, 0.5f, -15), 0));
-            availablePositions.Add((new Vector3(5.3f, 0.5f, -11.5f), 90));
-            availablePositions.Add((new Vector3(6, 0.5f, -15.8f), 90));
-            availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
-        }
-        if( SceneManager.GetActiveScene().name == "Cafeteria"){
-            availablePositions.Add((new Vector3(8f, 0.5f, -1), 0));
-            availablePositions.Add((new Vector3(5f, 0.5f, -9.5f), 0));
-            availablePositions.Add((new Vector3(4, 0.5f, -15.5f), 90));
-            availablePositions.Add((new Vector3(9.5f, 0.5f, -19f), 90));
-            availablePositions.Add((new Vector3(14, 0.5f, -18.5f), 0));
-            availablePositions.Add((new Vector3(19, 0.5f, -16f), 0));
-            availablePositions.Add((new Vector3(23, 0.5f, -12.5f), 0));
-            availablePositions.Add((new Vector3(26f, 0.5f, -6.5f), 90));
-            availablePositions.Add((new Vector3(24, 0.5f, 1.5f), 90));
-            availablePositions.Add((new Vector3(20, 0.5f, 6.5f), 90));
-        }
-    }
-
-    /// <summary>
-    /// Increases the number of collected objects of the given type in the given units.
-    /// </summary>
+    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
@@ -262,5 +226,60 @@ public class Nivel : MonoBehaviour
                 availablePositionsCopy.Remove((position, rotation));
             }
         }
+    }
+
+    /// <summary>
+    /// Initializes the available positions and the rotation that must be applied to the created
+    /// Game Object.
+    /// </summary>
+    private void InitializePositionsAndRotation()
+    {
+        availablePositions = new List<(Vector3 position, int rotation)>();
+
+        var currentSceneName = SceneManager.GetActiveScene().name;
+
+        switch (currentSceneName)
+        {
+            case "OficinaFix":
+                InitializeOfficePositions();
+
+                break;
+            case "Cafeteria":
+                InitializeCoffeeShopPositions();
+
+                break;
+            case "Jardin":
+            //// TODO: set the possible object positions in the scene named 'Jardin'.
+            default:
+                break;
+        }
+    }
+
+    private void InitializeCoffeeShopPositions()
+    {
+        availablePositions.Add((new Vector3(8f, 0.5f, -1), 0));
+        availablePositions.Add((new Vector3(5f, 0.5f, -9.5f), 0));
+        availablePositions.Add((new Vector3(4, 0.5f, -15.5f), 90));
+        availablePositions.Add((new Vector3(9.5f, 0.5f, -19f), 90));
+        availablePositions.Add((new Vector3(14, 0.5f, -18.5f), 0));
+        availablePositions.Add((new Vector3(19, 0.5f, -16f), 0));
+        availablePositions.Add((new Vector3(23, 0.5f, -12.5f), 0));
+        availablePositions.Add((new Vector3(26f, 0.5f, -6.5f), 90));
+        availablePositions.Add((new Vector3(24, 0.5f, 1.5f), 90));
+        availablePositions.Add((new Vector3(20, 0.5f, 6.5f), 90));
+    }
+
+    private void InitializeOfficePositions()
+    {
+        availablePositions.Add((new Vector3(17.5f, 0.5f, -20), 0));
+        availablePositions.Add((new Vector3(17.5f, 0.5f, -28), 0));
+        availablePositions.Add((new Vector3(16, 0.5f, -32.5f), 90));
+        availablePositions.Add((new Vector3(10f, 0.5f, -32.5f), 90));
+        availablePositions.Add((new Vector3(1, 0.5f, -33), 0));
+        availablePositions.Add((new Vector3(1, 0.5f, -24.5f), 0));
+        availablePositions.Add((new Vector3(-1.5f, 0.5f, -15), 0));
+        availablePositions.Add((new Vector3(5.3f, 0.5f, -11.5f), 90));
+        availablePositions.Add((new Vector3(6, 0.5f, -15.8f), 90));
+        availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
     }
 }
