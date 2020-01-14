@@ -92,7 +92,7 @@ ScriptedImporter:
       - name: _DstBlend
         float: 0
       - name: _GlossMapScale
-        float: 0
+        float: 1
       - name: _Glossiness
         float: 0.5
       - name: _GlossyReflections
@@ -214,7 +214,7 @@ ScriptedImporter:
     - textureName: Cobblestone - baseColor
       wrapMode: 0
       filterMode: 1
-      aniso: 4
+      aniso: 1
     - textureName: Cobblestone - normal
       wrapMode: 0
       filterMode: 1

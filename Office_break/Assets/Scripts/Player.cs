@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float coffeTimeMax = 40;
     [SerializeField] private float coffeSpeed = 2f;
     private bool boostActive = false;
+    public float boostLeft = 0;
+    public int boostMax = 3;
 
     private ParticleSystem particulasExtintor;
     private GameObject animationExtintor;
@@ -57,10 +59,12 @@ public class Player : MonoBehaviour
         transform.Rotate(rotation * currentspeed * 0.7f);
 
         currentspeed = _baseSpeed;
-        if (boostActive) currentspeed += _boostSpeed;
+        if (boostLeft > 0) currentspeed += _boostSpeed;
         if (coffeSecondsLeft != 0f) currentspeed += coffeSpeed;
         characterController.Move(direction * currentspeed * Time.deltaTime);
+
         if (verticalInput != 0 || horizontalInput != 0) coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
+        boostLeft = Mathf.Max(boostLeft - Time.deltaTime, 0);
 
         if (_arma != "None")
         {
@@ -84,27 +88,25 @@ public class Player : MonoBehaviour
 
             if (tagObjeto == "Extintor")
             {
-                var coroutine = StartExtinguiserAnimation(3);
-
-                StartCoroutine(coroutine);
+                IncreaseSpeed(boostMax);
             }
         }
     }
 
-    public IEnumerator StartExtinguiserAnimation(int seconds)
+    public void IncreaseSpeed(int seconds)
     {
-        this.particulasExtintor.Play();
-        this.animationExtintor.SetActive(true);
-
-        boostActive = true;
-
-        for (int i = 0; i < seconds; i++)
+        if (seconds == boostMax)
         {
-            yield return new WaitForSeconds(1);
+            this.particulasExtintor.Play();
+            this.animationExtintor.SetActive(true);
         }
 
-        boostActive = false;
-        this.animationExtintor.SetActive(false);
+        if (seconds <= 0)
+        {
+            this.animationExtintor.SetActive(false);
+        }
+
+        boostLeft = seconds;
     }
 
     public void Disparar()
