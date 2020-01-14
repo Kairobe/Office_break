@@ -141,16 +141,30 @@ public class Nivel : MonoBehaviour
     {
         availablePositions = new List<(Vector3 position, int rotation)>();
 
-        availablePositions.Add((new Vector3(17.5f, 0.5f, -20), 0));
-        availablePositions.Add((new Vector3(17.5f, 0.5f, -28), 0));
-        availablePositions.Add((new Vector3(16, 0.5f, -32.5f), 90));
-        availablePositions.Add((new Vector3(10f, 0.5f, -32.5f), 90));
-        availablePositions.Add((new Vector3(1, 0.5f, -33), 0));
-        availablePositions.Add((new Vector3(1, 0.5f, -24.5f), 0));
-        availablePositions.Add((new Vector3(-1.5f, 0.5f, -15), 0));
-        availablePositions.Add((new Vector3(5.3f, 0.5f, -11.5f), 90));
-        availablePositions.Add((new Vector3(6, 0.5f, -15.8f), 90));
-        availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
+        if( SceneManager.GetActiveScene().name == "OficinaFix"){
+            availablePositions.Add((new Vector3(17.5f, 0.5f, -20), 0));
+            availablePositions.Add((new Vector3(17.5f, 0.5f, -28), 0));
+            availablePositions.Add((new Vector3(16, 0.5f, -32.5f), 90));
+            availablePositions.Add((new Vector3(10f, 0.5f, -32.5f), 90));
+            availablePositions.Add((new Vector3(1, 0.5f, -33), 0));
+            availablePositions.Add((new Vector3(1, 0.5f, -24.5f), 0));
+            availablePositions.Add((new Vector3(-1.5f, 0.5f, -15), 0));
+            availablePositions.Add((new Vector3(5.3f, 0.5f, -11.5f), 90));
+            availablePositions.Add((new Vector3(6, 0.5f, -15.8f), 90));
+            availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
+        }
+        if( SceneManager.GetActiveScene().name == "Cafeteria"){
+            availablePositions.Add((new Vector3(8f, 0.5f, -1), 0));
+            availablePositions.Add((new Vector3(5f, 0.5f, -9.5f), 0));
+            availablePositions.Add((new Vector3(4, 0.5f, -15.5f), 90));
+            availablePositions.Add((new Vector3(9.5f, 0.5f, -19f), 90));
+            availablePositions.Add((new Vector3(14, 0.5f, -18.5f), 0));
+            availablePositions.Add((new Vector3(19, 0.5f, -16f), 0));
+            availablePositions.Add((new Vector3(23, 0.5f, -12.5f), 0));
+            availablePositions.Add((new Vector3(26f, 0.5f, -6.5f), 90));
+            availablePositions.Add((new Vector3(24, 0.5f, 1.5f), 90));
+            availablePositions.Add((new Vector3(20, 0.5f, 6.5f), 90));
+        }
     }
 
     /// <summary>
