@@ -76,8 +76,9 @@ public class ControladorUi : MonoBehaviour
 
     public void EndGame()
     {
-        Time.timeScale = 0;
-        this.endWindowIsActive = true;
+        CurrentLevelController.CurrentLevelData = new LevelData("admin", 0, 0, -1);
+
+        SceneManager.LoadScene("FinDeNivel");
     }
 
     // Start is called before the first frame update

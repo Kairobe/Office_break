@@ -34,7 +34,14 @@ public class FinDeNivel : MonoBehaviour
         }
         else
         {
-            texto.text = $"Has quedado {datos.playerPosition}º!";
+            if (datos.playerPosition >= 1)
+            {
+                texto.text = $"Has quedado {datos.playerPosition}º!";
+            }
+            else
+            {
+                texto.text = "El jefe te ha pillado...";
+            }
         }
 
         // Debug.Log(datos.playerAlias);

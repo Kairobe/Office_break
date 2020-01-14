@@ -35,7 +35,8 @@ public class BossController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { if (!tutorial)
+    {
+        if (!tutorial)
         {
             if (!hasDetectedPlayer)
             {
@@ -67,7 +68,7 @@ public class BossController : MonoBehaviour
     {
         if (!tutorial)
         {
-            if (other.tag == "Player")
+            if (other.CompareTag("Player"))
             {
                 this.controladorUi.EndGame();
             }
