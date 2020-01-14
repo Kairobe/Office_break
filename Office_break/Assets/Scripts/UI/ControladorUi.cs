@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ControladorUi : MonoBehaviour
 {
-    public Text clipCountText, timeCountText, maletinCountText, lapCountText, arma;
+    public Text clipCountText, timeCountText, maletinCountText, lapCountText, arma, positionText;
 
     private int minutes, seconds = 0;
 
@@ -67,6 +67,11 @@ public class ControladorUi : MonoBehaviour
         int currentLap = currentLapNumber == 0 ? 1 : currentLapNumber;
 
         this.lapCountText.text = $"{currentLap}/{raceLapNumber}";
+    }
+
+    public void UpdatePlayerPositionInRace(int playerPosition, int totalPlayers)
+    {
+        this.positionText.text = $"{playerPosition}/{totalPlayers}";
     }
 
     public void EndGame()
