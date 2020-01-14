@@ -31,12 +31,19 @@ public class Player : MonoBehaviour
     [SerializeField] private float coffeSpeed = 2f;
     private bool boostActive = false;
 
+    private ParticleSystem particulasExtintor;
+    private GameObject animationExtintor;
+
     // Start is called before the first frame update
     void Start()
     {
         currentspeed = _baseSpeed;
         characterController = GetComponent<CharacterController>();
         coffeSecondsLeft = coffeTimeMax;
+
+        this.particulasExtintor = this.GetComponent<ParticleSystem>();
+        this.animationExtintor = GameObject.FindGameObjectWithTag("PlayerExtinguisher");
+        this.animationExtintor.SetActive(false);
     }
 
     // Update is called once per frame
@@ -77,15 +84,18 @@ public class Player : MonoBehaviour
 
             if (tagObjeto == "Extintor")
             {
-                var coroutine = IncreaseSpeed(3);
+                var coroutine = StartExtinguiserAnimation(3);
 
                 StartCoroutine(coroutine);
             }
         }
     }
 
-    public IEnumerator IncreaseSpeed(int seconds)
+    public IEnumerator StartExtinguiserAnimation(int seconds)
     {
+        this.particulasExtintor.Play();
+        this.animationExtintor.SetActive(true);
+
         boostActive = true;
 
         for (int i = 0; i < seconds; i++)
@@ -94,6 +104,7 @@ public class Player : MonoBehaviour
         }
 
         boostActive = false;
+        this.animationExtintor.SetActive(false);
     }
 
     public void Disparar()

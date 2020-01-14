@@ -18,6 +18,7 @@ TagManager:
   - FinDeNivelTextMaletin
   - FinDeNivelTextClip
   - Oponent
+  - PlayerExtinguisher
   layers:
   - Default
   - TransparentFX
