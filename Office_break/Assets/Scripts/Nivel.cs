@@ -261,7 +261,9 @@ public class Nivel : MonoBehaviour
 
                 break;
             case "Jardin":
-            //// TODO: set the possible object positions in the scene named 'Jardin'.
+                InitializeGardenPositions();
+
+                break;
             default:
                 break;
         }
@@ -293,5 +295,20 @@ public class Nivel : MonoBehaviour
         availablePositions.Add((new Vector3(5.3f, 0.5f, -11.5f), 90));
         availablePositions.Add((new Vector3(6, 0.5f, -15.8f), 90));
         availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
+    }
+
+    private void InitializeGardenPositions()
+    {
+        availablePositions.Add((new Vector3(10f, 0.5f, -23), 90));
+        availablePositions.Add((new Vector3(15f, 0.5f, -23), 90));
+        availablePositions.Add((new Vector3(19.5f, 0.5f, -15f), 0));
+        availablePositions.Add((new Vector3(15.5f, 0.5f, -12.5f), 90));
+        availablePositions.Add((new Vector3(10.5f, 0.5f, -16f), 0));
+        availablePositions.Add((new Vector3(5f, 0.5f, -16f), 0));
+        availablePositions.Add((new Vector3(-5f, 0.5f, -5f), 0));
+        availablePositions.Add((new Vector3(14f, 0.5f, -3.5f), 90));
+        availablePositions.Add((new Vector3(14f, 0.5f, -0.5f), 90));
+        availablePositions.Add((new Vector3(0.8f, 0.5f, -2), 0));
+        availablePositions.Add((new Vector3(0.8f, 0.5f, -11), 0));
     }
 }
