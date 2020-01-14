@@ -24,11 +24,11 @@ public class FinDeNivel : MonoBehaviour
     {
         LevelData datos = CurrentLevelController.CurrentLevelData;
 
-        if (texto.tag.Equals("FinDeNivelTextClip"))
+        if (texto.CompareTag("FinDeNivelTextClip"))
         {
             texto.text = "x" + datos.collectedClips;
         }
-        else if (texto.tag.Equals("FinDeNivelTextMaletin"))
+        else if (texto.CompareTag("FinDeNivelTextMaletin"))
         {
             texto.text = "x" + datos.collectedBriefcases;
         }
