@@ -28,7 +28,7 @@ public class DirectedAgent : MonoBehaviour
 
     void Update()
     {
-        agent.speed = Random.Range(1.5f, 3f);
+        agent.speed = Random.Range(1.5f, 4f);
 
         if (agent.remainingDistance < 3)
         {
