@@ -10,13 +10,7 @@ public class DirectedAgent : MonoBehaviour
     private Rigidbody rigidbodyComponent;
     private bool shouldRotate = false;
 
-    private List<Vector3> levelOneRoute = new List<Vector3> {
-        new Vector3(10.76f, 0.0f, -15.89f),
-        new Vector3(0.95f, 0.0f, -21.27f),
-        new Vector3(0.95f, 0.0f, -31.19f),
-        new Vector3(17.1f, 0.0f, -32.78f),
-        new Vector3(17.53f, 0.0f, -21.31f)
-    };
+    private List<Vector3> levelRoutePoints;
 
     private int nextIndex = 0;
 
@@ -32,12 +26,13 @@ public class DirectedAgent : MonoBehaviour
 
         if (agent.remainingDistance < 3)
         {
-            agent.SetDestination(levelOneRoute[++nextIndex % levelOneRoute.Count]);
+            agent.SetDestination(levelRoutePoints[++nextIndex % levelRoutePoints.Count]);
         }
     }
 
     void Start()
     {
+        InitializeRoutePoints();
     }
 
     private void FixedUpdate()
@@ -71,6 +66,31 @@ public class DirectedAgent : MonoBehaviour
             shouldRotate = true;
 
             //agent.SetDestination(destination);
+        }
+    }
+
+    private void InitializeRoutePoints()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        switch (currentScene)
+        {
+            case "OficinaFix":
+                this.levelRoutePoints = new List<Vector3> {
+                    new Vector3(10.76f, 0.0f, -15.89f),
+                    new Vector3(0.95f, 0.0f, -21.27f),
+                    new Vector3(0.95f, 0.0f, -31.19f),
+                    new Vector3(17.1f, 0.0f, -32.78f),
+                    new Vector3(17.53f, 0.0f, -21.31f)
+                };
+
+                break;
+            case "Cafeteria":
+            //// TODO: Complete the points of the level associated with the scene named 'Cafeteria'.
+            case "Jardin":
+            //// TODO: Complete the points of the level associated with the scene named 'Jardin'.
+            default:
+                break;
         }
     }
 }
