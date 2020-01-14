@@ -66,6 +66,11 @@ public class Player : MonoBehaviour
         if (verticalInput != 0 || horizontalInput != 0) coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
         boostLeft = Mathf.Max(boostLeft - Time.deltaTime, 0);
 
+        if (boostLeft <= 0)
+        {
+            this.animationExtintor.SetActive(false);
+        }
+
         if (_arma != "None")
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -99,11 +104,6 @@ public class Player : MonoBehaviour
         {
             this.particulasExtintor.Play();
             this.animationExtintor.SetActive(true);
-        }
-
-        if (seconds <= 0)
-        {
-            this.animationExtintor.SetActive(false);
         }
 
         boostLeft = seconds;
