@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using System.Linq;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TutorialNivel : MonoBehaviour
 {
-
-
     private string textoEscrito;
+
     [SerializeField]
     public Text TextoTutorial;
 
@@ -24,7 +22,8 @@ public class TutorialNivel : MonoBehaviour
     [SerializeField]
     private GameObject clipPrefab, maletinPrefab, extintorPrefab;
 
-    GameObject player;
+    private GameObject player;
+
     [SerializeField]
     private int clipMaxNumber, maletinMaxNumber, extintorMaxNumber = 0;
 
@@ -40,19 +39,19 @@ public class TutorialNivel : MonoBehaviour
 
     [SerializeField]
     private int raceLapsNumber;
-    
+
     public BossController bo;
 
     private Vector3 posMal = new Vector3(17f, 0.09f, -20f);
 
     private bool MaletinPillado = false;
 
-
     // Start is called before the first frame update
     void Start()
     {
         bo = GameObject.FindObjectOfType(typeof(BossController)) as BossController;
         bo.esTutorial();
+
         // TextoTutorial = this.GetComponent<Text>();
         textoEscrito = "Bienvenido/a al tutorial!";
         textoEscrito = textoEscrito + "\n (Pulsa cualquier tecla para seguir.)";
@@ -78,30 +77,31 @@ public class TutorialNivel : MonoBehaviour
 
     private void Awake()
     {
-       /* GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("CheckPoint");
-        this.currentLevelCheckPoints = new GameObject[checkpoints.Length];
+        /* GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("CheckPoint");
+         this.currentLevelCheckPoints = new GameObject[checkpoints.Length];
 
-        this.currentLevelCheckPoints[0] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint0");
-        this.currentLevelCheckPoints[1] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint1");
-        this.currentLevelCheckPoints[2] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint2");
-        this.currentLevelCheckPoints[3] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint3");
+         this.currentLevelCheckPoints[0] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint0");
+         this.currentLevelCheckPoints[1] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint1");
+         this.currentLevelCheckPoints[2] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint2");
+         this.currentLevelCheckPoints[3] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint3");
 
-        for (int i = 1; i < this.currentLevelCheckPoints.Length; i++)
-        {
-            this.currentLevelCheckPoints[i].SetActive(false);
-        }
+         for (int i = 1; i < this.currentLevelCheckPoints.Length; i++)
+         {
+             this.currentLevelCheckPoints[i].SetActive(false);
+         }
 
-        this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();*/
+         this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();*/
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(faseDelTutorial == 0)
+        if (faseDelTutorial == 0)
         {
             StartCoroutine(EsperaTutorial());
 
             posJugador = player.transform.position;
+
             //Debug.Log(posJugador);
             if (Input.anyKey)
             {
@@ -109,25 +109,24 @@ public class TutorialNivel : MonoBehaviour
                 textoEscrito = "Bien hecho! \n Ahora prueba a moverte. ";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
-                
             }
         }
         Vector3 posactual = player.transform.position;
+
         //Debug.Log(posactual);
         if (faseDelTutorial == 1)
         {
             //Vector3 posactual = player.transform.position;
-            if (Mathf.Abs(posactual[0]-posJugador[0]) > 2 ||  Mathf.Abs(posactual[2]-posJugador[2]) > 2){
+            if (Mathf.Abs(posactual[0] - posJugador[0]) > 2 || Mathf.Abs(posactual[2] - posJugador[2]) > 2)
+            {
                 faseDelTutorial = 2;
                 textoEscrito = "Te has movido!";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
-
             }
         }
         if (faseDelTutorial == 3)
         {
-
             //StartCoroutine(EsperaTutorial());
             if (Input.GetKeyDown(KeyCode.Return))
             {
@@ -135,11 +134,9 @@ public class TutorialNivel : MonoBehaviour
                 textoEscrito = "Puede que encuentres clips o maletines mientras te mueves. \n Deberías recogerlos. (Sirven para crear armas.) \n ¡Prueba a coger el maletín!";
                 TextoTutorial.text = textoEscrito;
                 Instantiate(maletinPrefab, posMal, Quaternion.identity);
+
                 //faseDelTutorial = 4;
-               
             }
-           
-            
         }
         if (faseDelTutorial == 4)
         {
@@ -147,36 +144,33 @@ public class TutorialNivel : MonoBehaviour
             //StartCoroutine(EsperaTutorial());
             if (MaletinPillado)
             {
-                
                 textoEscrito = "¡Bien hecho! \n \n Además, de ese ascensor puede salir  jefe. (Aunque ahora no)  \n \n ";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
+
                 //StartCoroutine(EsperaTutorial());
-                
+
                 //faseDelTutorial = 5;
             }
         }
         if (faseDelTutorial == 5)
         {
-            
-            
+            textoEscrito = "Para superar a tus enemigos, puedes dispararles. \n Prueba a pulsar espacio.";
+            TextoTutorial.text = textoEscrito;
+            StartCoroutine(EsperaTutorial());
 
-                textoEscrito = "Para superar a tus enemigos, puedes dispararles. \n Prueba a pulsar espacio.";
-                TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
-                //Debug.Log(faseDelTutorial);
+            //Debug.Log(faseDelTutorial);
             //faseDelTutorial = 6;
-
         }
         if (faseDelTutorial == 6)
         {
             //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return) )
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
             {
-
                 textoEscrito = "Bien hecho! \n En tus aventuras verás objetos que no son clips. Te darán ventajas útiles. \n \n (Pulsa enter para continuar)";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
+
                 //faseDelTutorial = 7;
             }
         }
@@ -185,10 +179,10 @@ public class TutorialNivel : MonoBehaviour
             //StartCoroutine(EsperaTutorial());
             if (Input.GetKeyDown(KeyCode.Return))
             {
-
                 textoEscrito = "También puedes acceder al menú de creación de objetos al final de nivel. \n \n (Pulsa enter para continuar)";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
+
                 //faseDelTutorial = 8;
             }
         }
@@ -197,27 +191,25 @@ public class TutorialNivel : MonoBehaviour
             //StartCoroutine(EsperaTutorial());
             if (Input.GetKeyDown(KeyCode.Return))
             {
-
                 textoEscrito = "Y con esto ya puedes empezar a jugar. Pulsa enter para ir al menú principal :)";
                 TextoTutorial.text = textoEscrito;
                 StartCoroutine(EsperaTutorial());
+
                 //faseDelTutorial = 9;
             }
         }
         if (faseDelTutorial == 9)
         {
-           // StartCoroutine(EsperaTutorial());
+            // StartCoroutine(EsperaTutorial());
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-
             }
         }
     }
 
     private IEnumerator EsperaTutorial()
     {
-
         if (faseDelTutorial == 1)
         {
             //yield on a new YieldInstruction that waits for 5 seconds.
@@ -227,7 +219,6 @@ public class TutorialNivel : MonoBehaviour
         }
         else if (faseDelTutorial == 2)
         {
-
             yield return new WaitForSeconds(1);
             textoEscrito = "Necesitas café para moverte. \n Más adelante hay una cafetera. Si te detienes ante ella, recargarás café. \n \n (Pulsa enter para continuar)";
             TextoTutorial.text = textoEscrito;
@@ -252,13 +243,10 @@ public class TutorialNivel : MonoBehaviour
             yield return new WaitForSeconds(1);
             faseDelTutorial = faseDelTutorial + 1;
         }
-        
-           
-        }
+    }
 
     private void TutorialTexto()
     {
-
     }
 
     /// <summary>
@@ -315,7 +303,9 @@ public class TutorialNivel : MonoBehaviour
         availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
     }
 
-    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
+    /// <summary>
+    /// Increases the number of collected objects of the given type in the given units.
+    /// </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
@@ -340,7 +330,7 @@ public class TutorialNivel : MonoBehaviour
         {
             if (this.lapNumber == this.raceLapsNumber)
             {
-                LevelData currentLevelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
+                LevelData currentLevelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"], 1);
                 CurrentLevelController.CurrentLevelData = currentLevelData;
                 UpdateCurrentUserData(currentLevelData);
 
@@ -400,10 +390,8 @@ public class TutorialNivel : MonoBehaviour
         }
     }
 
-
     public void pillarMaletin()
     {
         MaletinPillado = true;
     }
-       
 }

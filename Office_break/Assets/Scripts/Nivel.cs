@@ -28,6 +28,8 @@ public class Nivel : MonoBehaviour
 
     private int lapNumber = 0;
 
+    private int playerPositionInRace = 1;
+
     [SerializeField]
     private int raceLapsNumber;
 
@@ -69,6 +71,8 @@ public class Nivel : MonoBehaviour
     void Update()
     {
         (int playerPosition, int totalPlayers) = this.GetPlayerPositionInGame();
+
+        this.playerPositionInRace = playerPosition;
 
         this.controladorUi.UpdatePlayerPositionInRace(playerPosition, totalPlayers);
     }
@@ -154,7 +158,9 @@ public class Nivel : MonoBehaviour
         availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
     }
 
-    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
+    /// <summary>
+    /// Increases the number of collected objects of the given type in the given units.
+    /// </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
@@ -184,7 +190,7 @@ public class Nivel : MonoBehaviour
                     return;
                 }
 
-                LevelData currentLevelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"]);
+                LevelData currentLevelData = new LevelData("admin", this.collectedObjectNumber["Clip"], this.collectedObjectNumber["Maletin"], this.playerPositionInRace);
                 CurrentLevelController.CurrentLevelData = currentLevelData;
                 UpdateCurrentUserData(currentLevelData);
 
