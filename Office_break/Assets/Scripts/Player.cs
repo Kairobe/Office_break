@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         if (verticalInput != 0 || horizontalInput != 0) coffeSecondsLeft = Mathf.Max(coffeSecondsLeft - Time.deltaTime, 0);
         boostLeft = Mathf.Max(boostLeft - Time.deltaTime, 0);
 
-        if (boostLeft <= 0)
+        if (boostLeft <= 0 && this.animationExtintor != null)
         {
             this.animationExtintor.SetActive(false);
             this.particulasExtintor.Stop();
