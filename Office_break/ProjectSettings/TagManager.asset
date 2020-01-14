@@ -19,6 +19,7 @@ TagManager:
   - FinDeNivelTextClip
   - Oponent
   - PlayerExtinguisher
+  - ExtinguisherParticleSystem
   layers:
   - Default
   - TransparentFX

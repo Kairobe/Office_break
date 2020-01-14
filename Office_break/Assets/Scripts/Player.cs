@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         coffeSecondsLeft = coffeTimeMax;
 
-        this.particulasExtintor = this.GetComponent<ParticleSystem>();
+        this.particulasExtintor = GameObject.FindGameObjectWithTag("ExtinguisherParticleSystem").GetComponent<ParticleSystem>();
         this.animationExtintor = GameObject.FindGameObjectWithTag("PlayerExtinguisher");
         this.animationExtintor.SetActive(false);
     }
@@ -68,6 +68,7 @@ public class Player : MonoBehaviour
         if (boostLeft <= 0)
         {
             this.animationExtintor.SetActive(false);
+            this.particulasExtintor.Stop();
         }
 
         if (_arma != "None")
