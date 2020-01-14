@@ -28,8 +28,6 @@ public class Nivel : MonoBehaviour
 
     private int lapNumber = 0;
 
-    private string currentPosition = "1/2";
-
     [SerializeField]
     private int raceLapsNumber;
 
@@ -70,15 +68,18 @@ public class Nivel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int playerPosition = this.GetPlayerPositionInGame();
-        this.currentPosition = $"{playerPosition}/{this.playerGameObjects.Length}";
+        (int playerPosition, int totalPlayers) = this.GetPlayerPositionInGame();
 
-        Debug.Log(this.currentPosition);
+        this.controladorUi.UpdatePlayerPositionInRace(playerPosition, totalPlayers);
     }
 
-    /// <summary> Gets the position of the player in the current race. </summary>
-    /// <returns> The position of the player in the current race. </returns>
-    private int GetPlayerPositionInGame()
+    /// <summary>
+    /// Gets the position of the player in the current race and the total players in the race.
+    /// </summary>
+    /// <returns>
+    /// The position of the player in the current race and the total players in the race.
+    /// </returns>
+    private (int playerPosition, int totalPlayers) GetPlayerPositionInGame()
     {
         List<(float distance, bool isPlayer)> distancesToNextCheckpointTuple = new List<(float distance, bool isPlayer)>();
 
@@ -96,7 +97,7 @@ public class Nivel : MonoBehaviour
             distancesToNextCheckpointTuple.Add((distance, isPlayer));
         }
 
-        return distancesToNextCheckpointTuple.OrderBy(d => d.distance).Select(d => d.isPlayer).ToList().FindIndex(b => b == true) + 1;
+        return (distancesToNextCheckpointTuple.OrderBy(d => d.distance).Select(d => d.isPlayer).ToList().FindIndex(b => b == true) + 1, this.playerGameObjects.Length);
     }
 
     /// <summary>
@@ -153,9 +154,7 @@ public class Nivel : MonoBehaviour
         availablePositions.Add((new Vector3(12, 0.5f, -17), 90));
     }
 
-    /// <summary>
-    /// Increases the number of collected objects of the given type in the given units.
-    /// </summary>
+    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
