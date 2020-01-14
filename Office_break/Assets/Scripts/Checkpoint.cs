@@ -40,7 +40,7 @@ public class Checkpoint : MonoBehaviour
 
         if (tagName == "Player" || tagName == "Oponent")
         {
-            this.nivel.ActivateNextCheckPoint(this.index, tagName == "Player");
+            this.nivel.ActivateNextCheckPoint(this.index, other.gameObject);
         }
     }
 }

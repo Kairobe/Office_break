@@ -28,6 +28,8 @@ public class Nivel : MonoBehaviour
 
     private int lapNumber = 0;
 
+    private int playerMinimunPosition = 1;
+
     private int playerPositionInRace = 1;
 
     [SerializeField]
@@ -85,6 +87,11 @@ public class Nivel : MonoBehaviour
     /// </returns>
     private (int playerPosition, int totalPlayers) GetPlayerPositionInGame()
     {
+        if (this.playerMinimunPosition > 1)
+        {
+            return (this.playerMinimunPosition, this.playerGameObjects.Length);
+        }
+
         List<(float distance, bool isPlayer)> distancesToNextCheckpointTuple = new List<(float distance, bool isPlayer)>();
 
         foreach (GameObject playerGameObject in playerGameObjects)
@@ -138,7 +145,9 @@ public class Nivel : MonoBehaviour
         };
     }
 
-    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
+    /// <summary>
+    /// Increases the number of collected objects of the given type in the given units.
+    /// </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.
@@ -152,7 +161,7 @@ public class Nivel : MonoBehaviour
         this.controladorUi.UpdateObjectCount(objectType, this.collectedObjectNumber[objectType]);
     }
 
-    public void ActivateNextCheckPoint(int passedCheckPointNumber, bool isPlayer)
+    public void ActivateNextCheckPoint(int passedCheckPointNumber, GameObject passingGameObject)
     {
         if (passedCheckPointNumber != this.activeCheckPoint)
         {
@@ -163,8 +172,11 @@ public class Nivel : MonoBehaviour
         {
             if (this.lapNumber == this.raceLapsNumber)
             {
-                if (!isPlayer)
+                if (!passingGameObject.CompareTag("Player"))
                 {
+                    passingGameObject.GetComponent<DirectedAgent>().StopAgent();
+                    this.playerMinimunPosition++;
+
                     return;
                 }
 
@@ -257,15 +269,15 @@ public class Nivel : MonoBehaviour
 
     private void InitializeCoffeeShopPositions()
     {
-        availablePositions.Add((new Vector3(8f, 0.5f, -1), 0));
-        availablePositions.Add((new Vector3(5f, 0.5f, -9.5f), 0));
+        availablePositions.Add((new Vector3(9.5f, 0.5f, -1), 0));
+        availablePositions.Add((new Vector3(5f, 0.5f, -9.5f), 90));
         availablePositions.Add((new Vector3(4, 0.5f, -15.5f), 90));
         availablePositions.Add((new Vector3(9.5f, 0.5f, -19f), 90));
-        availablePositions.Add((new Vector3(14, 0.5f, -18.5f), 0));
-        availablePositions.Add((new Vector3(19, 0.5f, -16f), 0));
+        availablePositions.Add((new Vector3(14, 0.5f, -18.5f), 90));
+        availablePositions.Add((new Vector3(19, 0.5f, -18f), 90));
         availablePositions.Add((new Vector3(23, 0.5f, -12.5f), 0));
-        availablePositions.Add((new Vector3(26f, 0.5f, -6.5f), 90));
-        availablePositions.Add((new Vector3(24, 0.5f, 1.5f), 90));
+        availablePositions.Add((new Vector3(23.5f, 0.5f, -6.5f), 0));
+        availablePositions.Add((new Vector3(24, 0.5f, 1.5f), 0));
         availablePositions.Add((new Vector3(20, 0.5f, 6.5f), 90));
     }
 

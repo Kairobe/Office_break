@@ -15,6 +15,8 @@ public class DirectedAgent : MonoBehaviour
 
     private int nextIndex = 0;
 
+    private bool isStopped = false;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -23,9 +25,14 @@ public class DirectedAgent : MonoBehaviour
 
     void Update()
     {
+        if (isStopped)
+        {
+            return;
+        }
+
         agent.speed = Random.Range(1.5f, 4f);
 
-        if (agent.remainingDistance < 3)
+        if (agent.remainingDistance < 1)
         {
             agent.SetDestination(levelRoutePoints[++nextIndex % levelRoutePoints.Count]);
         }
@@ -36,8 +43,27 @@ public class DirectedAgent : MonoBehaviour
         InitializeRoutePoints();
     }
 
+    public void StopAgent()
+    {
+        StartCoroutine("StopAgentCoroutine");
+    }
+
+    private IEnumerator StopAgentCoroutine()
+    {
+        this.isStopped = true;
+
+        yield return new WaitForSeconds(3);
+
+        agent.isStopped = true;
+    }
+
     private void FixedUpdate()
     {
+        if (isStopped)
+        {
+            return;
+        }
+
         if (shouldRotate)
         {
             StartCoroutine("Rotate");
@@ -82,12 +108,19 @@ public class DirectedAgent : MonoBehaviour
                     new Vector3(0.95f, 0.0f, -21.27f),
                     new Vector3(0.95f, 0.0f, -31.19f),
                     new Vector3(17.1f, 0.0f, -32.78f),
-                    new Vector3(17.53f, 0.0f, -21.31f)
+                    new Vector3(17.53f, 0.0f, -21.31f),
                 };
 
                 break;
             case "Cafeteria":
-            //// TODO: Complete the points of the level associated with the scene named 'Cafeteria'.
+                this.levelRoutePoints = new List<Vector3> {
+                    new Vector3(10f, 0.0f, 1.5f),
+                    new Vector3(5.5f, 0.0f, -9.4f),
+                    new Vector3(17f, 0.0f, -18f),
+                    new Vector3(23.5f, 0.0f, 2.5f),
+                };
+
+                break;
             case "Jardin":
             //// TODO: Complete the points of the level associated with the scene named 'Jardin'.
             default:
