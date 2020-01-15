@@ -18,16 +18,18 @@ public class BriefcasesManager : MonoBehaviour
     private BriefcaseType obtainedBriefcaseType;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         this.ShowMenu(CurrentLevelController.CurrentLevelData.collectedBriefcases);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
     }
 
+    /// <summary> Shows the menu associated with the <see cref="Briefcase"/> opening. </summary>
+    /// <param name="collectedBriefcases"> The number of collected <see cref="Briefcase"/>. </param>
     public void ShowMenu(int collectedBriefcases)
     {
         string obtainedBriefcaseTypeToSpanish = string.Empty;
@@ -77,11 +79,15 @@ public class BriefcasesManager : MonoBehaviour
         }
     }
 
+    /// <summary> The listener associated with the click in the 'Open Briefcase' menu button. </summary>
     private void OpenBriefcaseButtonClicked()
     {
         this.GenerateRandomObjectCollection();
     }
 
+    /// <summary>
+    /// Generated a random quantity of collected items and storages it in the current user data.
+    /// </summary>
     private void GenerateRandomObjectCollection()
     {
         int numberOfItemsToGenerate = 0;

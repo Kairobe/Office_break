@@ -7,23 +7,26 @@ using UnityEngine.SceneManagement;
 public class DirectedAgent : MonoBehaviour
 {
     private NavMeshAgent agent;
-
     private Rigidbody rigidbodyComponent;
-    private bool shouldRotate = false;
-
+    private bool isStopped = false, shouldRotate = false;
     private List<Vector3> levelRoutePoints;
+    private int nextIndex = 0;
 
-    [SerializeField] private int nextIndex = 0;
-
-    private bool isStopped = false;
-
+    /// <summary> Called when the script instance is being loaded. </summary>
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         rigidbodyComponent = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    /// <summary> Called before the first frame update. </summary>
+    private void Start()
+    {
+        InitializeRoutePoints();
+    }
+
+    /// <summary> Called once per frame. </summary>
+    private void Update()
     {
         if (isStopped)
         {
@@ -38,25 +41,7 @@ public class DirectedAgent : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        InitializeRoutePoints();
-    }
-
-    public void StopAgent()
-    {
-        StartCoroutine("StopAgentCoroutine");
-    }
-
-    private IEnumerator StopAgentCoroutine()
-    {
-        this.isStopped = true;
-
-        yield return new WaitForSeconds(3);
-
-        agent.isStopped = true;
-    }
-
+    /// <summary> Frame-rate independent message for physics calculations. </summary>
     private void FixedUpdate()
     {
         if (isStopped)
@@ -70,6 +55,41 @@ public class DirectedAgent : MonoBehaviour
         }
     }
 
+    /// <summary> Called when the GameObject collides with another GameObject. </summary>
+    /// <param name="collider">
+    /// The <see cref="Collider"/> with details about the trigger event, such as the name of its GameObject.
+    /// </param>
+    private void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("PencilMunition"))
+        {
+            shouldRotate = true;
+        }
+    }
+
+    /// <summary> Stops the navigation of the <see cref="NavMeshAgent"/>. </summary>
+    public void StopAgent()
+    {
+        StartCoroutine("StopAgentCoroutine");
+    }
+
+    /// <summary> A coroutine that stops the <see cref="NavMeshAgent"/>. </summary>
+    /// <returns>
+    /// An empty <see cref="IEnumerator"/> that enables this method to be called as a coroutine.
+    /// </returns>
+    private IEnumerator StopAgentCoroutine()
+    {
+        this.isStopped = true;
+
+        yield return new WaitForSeconds(3);
+
+        agent.isStopped = true;
+    }
+
+    /// <summary> Starts rotating the current <see cref="NavMeshAgent"/>. </summary>
+    /// <returns>
+    /// An empty <see cref="IEnumerator"/> that enables this method to be called as a coroutine.
+    /// </returns>
     private IEnumerator Rotate()
     {
         float originalSpeed = agent.speed;
@@ -82,20 +102,7 @@ public class DirectedAgent : MonoBehaviour
         shouldRotate = false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "MunicionLapiz")
-        {
-            ////    var destination = agent.destination;
-
-            ////    agent.isStopped = true;
-
-            shouldRotate = true;
-
-            //agent.SetDestination(destination);
-        }
-    }
-
+    /// <summary> Initializes the routing points depending on the current <see cref="Scene"/>. </summary>
     private void InitializeRoutePoints()
     {
         string currentScene = SceneManager.GetActiveScene().name;

@@ -120,6 +120,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &209209129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4232615687026851800, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256890914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &416195361 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4232615687366134733, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
@@ -314,6 +326,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a7ab05c3b38ea48b8d302e41a782fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &827840303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4232615686816806715, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256890914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &931826201
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +429,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1203405930 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4232615688089274881, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256890914}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1256890914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -606,6 +636,60 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4232615687366134732, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: slingshotButton
+      value: 
+      objectReference: {fileID: 1542521779}
+    - target: {fileID: 4232615687366134732, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: rulerButton
+      value: 
+      objectReference: {fileID: 2048439457}
+    - target: {fileID: 4232615687366134732, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: crossbowButton
+      value: 
+      objectReference: {fileID: 827840303}
+    - target: {fileID: 4232615687366134732, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: buyButton
+      value: 
+      objectReference: {fileID: 209209129}
+    - target: {fileID: 4232615687366134732, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: weaponAlreadyBoughtGameObject
+      value: 
+      objectReference: {fileID: 2093602508}
+    - target: {fileID: 4232615687366134732, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: buyGameObject
+      value: 
+      objectReference: {fileID: 1203405930}
+    - target: {fileID: 4232615686440610621, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615687609664851, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615686285410024, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615687578945944, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 196b12a98796f9c43a21ff0ba6f53f2f, type: 3}
 --- !u!1 &1469139651
@@ -674,6 +758,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542521779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4232615687145840967, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256890914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1559725319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,3 +1161,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2048439457 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4232615687964185124, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256890914}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2093602508 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4232615686440610619, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1256890914}
+  m_PrefabAsset: {fileID: 0}

@@ -25,7 +25,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aefd1f86ec548e43954150e344c9c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &720612686408326074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41,7 +40,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 63d8c3afccd83f2458ce60e392e73f6a,
         type: 3}
       propertyPath: m_TagString
-      value: Maletin
+      value: Briefcase
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63d8c3afccd83f2458ce60e392e73f6a,
         type: 3}

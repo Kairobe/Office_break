@@ -40,7 +40,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 63d8c3afccd83f2458ce60e392e73f6a,
         type: 3}
       propertyPath: m_TagString
-      value: Maletin
+      value: Briefcase
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 63d8c3afccd83f2458ce60e392e73f6a,
         type: 3}

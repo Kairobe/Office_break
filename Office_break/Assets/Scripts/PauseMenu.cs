@@ -1,22 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     private Canvas canvas;
-    
-    // Start is called before the first frame update
-    void Start()
-    { 
+
+    /// <summary> Called before the first frame update. </summary>
+    private void Start()
+    {
         canvas = this.GetComponent<Canvas>();
         canvas.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary> Called once per frame </summary>
+    private void Update()
     {
         if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) && canvas != null)
         {
@@ -25,6 +22,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    /// <summary> Resumes the level. </summary>
     public void ContinueLevel()
     {
         if(canvas != null)
@@ -34,29 +32,33 @@ public class PauseMenu : MonoBehaviour
         }        
     }
 
+    /// <summary> Exits to the main menu. </summary>
     public void Exit()
     {
-        SceneManager.LoadScene("MenuInicial");
+        SceneManager.LoadScene(SceneNames.MainMenu);
     }
 
+    /// <summary> Mutes the volume. </summary>
     public void VolumeMute()
     {
         AudioListener.volume = 0;
     }
 
+    /// <summary> Reduces the volume. </summary>
     public void VolumeReduce()
     {
-        if(AudioListener.volume > 0)
+        if (AudioListener.volume > 0)
         {
             AudioListener.volume -= (float)0.01;
-        }        
+        }
     }
-    
+
+    /// <summary> Increases the volume. </summary>
     public void VolumeIncrease()
     {
-        if(AudioListener.volume < 1)
+        if (AudioListener.volume < 1)
         {
             AudioListener.volume += (float)0.01;
-        }        
+        }
     }
 }

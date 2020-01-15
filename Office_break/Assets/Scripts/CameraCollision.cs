@@ -2,40 +2,41 @@
 
 public class CameraCollision : MonoBehaviour
 {
-    private Vector3 minPos, maxPos, posDif, futurePos;
+    private Vector3 minPosition, maxPosition, posDif, futurePosition;
     public bool moved;
-    private int consecutiveHits;
 
-    void Start()
+    /// <summary> Called before the first frame update. </summary>
+    private void Start()
     {
         moved = false;
-        consecutiveHits = 0;
     }
 
-    void LateUpdate()
+    /// <summary> Called after all Update functions have been called. </summary>
+    private void LateUpdate()
     {
-        minPos = transform.parent.parent.position;
-        maxPos = transform.parent.position;
+        minPosition = transform.parent.parent.position;
+        maxPosition = transform.parent.position;
         posDif = new Vector3(
-            maxPos.x - minPos.x,
-            maxPos.y - minPos.y,
-            maxPos.z - minPos.z
+            maxPosition.x - minPosition.x,
+            maxPosition.y - minPosition.y,
+            maxPosition.z - minPosition.z
         );
 
         RaycastHit hit;
 
-        if(!moved){
+        if (!moved)
+        {
             float h = Input.GetAxis("Horizontal");
-            if (h != 0f) moved = true;
+
+            if (h != 0f)
+            {
+                moved = true;
+            }
         }
 
-        if (Physics.Linecast(minPos, maxPos, out hit) && moved)
+        if (Physics.Linecast(minPosition, maxPosition, out hit) && moved)
         {
-            /*if (consecutiveHits <= 1){
-                consecutiveHits++;
-                futurePos = maxPos;
-            } else */
-            futurePos = minPos + new Vector3(
+            futurePosition = minPosition + new Vector3(
                 posDif.x * (hit.distance / 2),
                 posDif.y * (hit.distance / 2),
                 posDif.z * (hit.distance / 2)
@@ -43,11 +44,9 @@ public class CameraCollision : MonoBehaviour
         }
         else
         {
-            futurePos = maxPos;
-
-            //consecutiveHits = 0;
+            futurePosition = maxPosition;
         }
 
-        transform.position = futurePos;
+        transform.position = futurePosition;
     }
 }

@@ -3856,17 +3856,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939df5b2b2b8aa64a85cbbbbdf1d1dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _baseSpeed: 1.5
-  _boostSpeed: 1.8
-  _arma: Tirachinas
-  _borradorPrefab: {fileID: 5604912599590869651, guid: 3993bee2ac637f64d8642fd330e12aeb,
+  baseSpeed: 1.5
+  boostSpeed: 2
+  coffeSpeed: 2
+  weapon: Tirachinas
+  draftPrefab: {fileID: 5604912599590869651, guid: 3993bee2ac637f64d8642fd330e12aeb,
     type: 3}
   currentspeed: 0
   direction: {x: 0, y: 0, z: 0}
-  reloadingCoffe: 0
   coffeSecondsLeft: 0
   coffeTimeMax: 40
-  coffeSpeed: 2
+  reloadingCoffe: 0
   boostLeft: 0
   boostMax: 3
 --- !u!1 &9025471440023433187
@@ -4102,6 +4102,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 199092248008267778, guid: dbc31a91229a53d46a7f541c55b69618,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 433d59e25b2c2ab4ab38a7264d110cbd, type: 2}
     - target: {fileID: 198124144702787664, guid: dbc31a91229a53d46a7f541c55b69618,
         type: 3}
       propertyPath: looping
@@ -4112,7 +4117,7 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 199092248008267778, guid: dbc31a91229a53d46a7f541c55b69618,
+    - target: {fileID: 199287826736471690, guid: dbc31a91229a53d46a7f541c55b69618,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -4122,11 +4127,6 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 199287826736471690, guid: dbc31a91229a53d46a7f541c55b69618,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 433d59e25b2c2ab4ab38a7264d110cbd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbc31a91229a53d46a7f541c55b69618, type: 3}
 --- !u!4 &3493298928333566908 stripped
