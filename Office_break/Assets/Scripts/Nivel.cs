@@ -210,7 +210,7 @@ public class Nivel : MonoBehaviour
                 UpdateCurrentUserData(currentLevelData);
 
                 //Para que vaya a la pantalla de fin de nivel:
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(SceneNames.EndOfLevel);
 
                 //this.controladorUi.EndGame();
             }

@@ -9,38 +9,17 @@ public class ControladorUi : MonoBehaviour
 
     private int minutes, seconds = 0;
 
-    private bool endWindowIsActive = false;
-
-    private Rect mainWindowRect;
-
-    void OnGUI()
+    // Start is called before the first frame update
+    void Start()
     {
-        if (endWindowIsActive)
-        {
-            this.mainWindowRect = this.CalculateCenterRect(Screen.width, Screen.height, 200, 200);
-
-            // Register the window. Notice the 3rd parameter
-            GUI.Window(0, this.mainWindowRect, DoMyWindow, "Juego finalizado");
-        }
+        StartCoroutine("IncreaseTime");
+        Time.timeScale = 1; //Just making sure that the timeScale is right
     }
 
-    // Make the contents of the window
-    void DoMyWindow(int windowID)
+    // Update is called once per frame
+    void Update()
     {
-        if (GUI.Button(new Rect((this.mainWindowRect.width / 2.0f) - 50, ((this.mainWindowRect.height / 2.0f) - 50) / 2.0f, 100, 50), "Reiniciar"))
-        {
-            Time.timeScale = 1;
-            SceneManager.LoadScene("OficinaFix");
-        }
-        else if (GUI.Button(new Rect((this.mainWindowRect.width / 2.0f) - 50, (this.mainWindowRect.height / 2.0f) + 25, 100, 50), "Salir"))
-        {
-            Application.Quit();
-        }
-    }
-
-    private Rect CalculateCenterRect(float parentWidth, float parentHeight, float width, float height)
-    {
-        return new Rect((parentWidth / 2.0f) - (width / 2.0f), (parentHeight / 2.0f) - (height / 2.0f), width, height);
+        UpdateTimeCountText();
     }
 
     public void UpdateObjectCount(string objectType, int numberOfObjectsCollected)
@@ -78,20 +57,7 @@ public class ControladorUi : MonoBehaviour
     {
         CurrentLevelController.CurrentLevelData = new LevelData("admin", 0, 0, -1);
 
-        SceneManager.LoadScene("FinDeNivel");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine("IncreaseTime");
-        Time.timeScale = 1; //Just making sure that the timeScale is right
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateTimeCountText();
+        SceneManager.LoadScene(SceneNames.EndOfLevel);
     }
 
     private void UpdateTimeCountText()
