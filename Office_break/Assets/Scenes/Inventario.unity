@@ -314,7 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38a7ab05c3b38ea48b8d302e41a782fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuButton: {fileID: 1559725319}
 --- !u!1 &931826201
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +566,45 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 156.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232615686197051964, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615686239004294, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615686239004294, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232615686878331319, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615686878331319, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4232615687914381118, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80,
+        type: 3}
+    - target: {fileID: 4232615687914381118, guid: 196b12a98796f9c43a21ff0ba6f53f2f,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 196b12a98796f9c43a21ff0ba6f53f2f, type: 3}
@@ -826,7 +864,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 92293f2970eef3f4a97685842bbdbd19, type: 3}
+    m_Font: {fileID: 12800000, guid: f9c005d926b97124bb688c27ac7b3d80, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
