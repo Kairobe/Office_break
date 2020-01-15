@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coffeBar: {fileID: 6691821723844803541}
   playerObject: {fileID: 0}
-  tmp: {fileID: 7954135885958996581}
+  coffeeBarImage: {fileID: 2598620487071677588}
 --- !u!1 &632864123538037295
 GameObject:
   m_ObjectHideFlags: 0

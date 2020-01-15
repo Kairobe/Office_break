@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6906721345488506308}
   m_Layer: 0
   m_Name: MunicionBorrador
-  m_TagString: Borrador
+  m_TagString: Draft
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 754158bdd8d93084bbea588d476a92f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  speed: 10
   direction: {x: 0, y: 0, z: 0}

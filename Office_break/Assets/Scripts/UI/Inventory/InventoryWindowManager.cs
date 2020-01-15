@@ -3,16 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class InventoryWindowManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary> Called before the first frame update. </summary>
+    private void Start()
     {
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary> Called once per frame. </summary>
+    private void Update()
     {
     }
 
+    /// <summary> Loads the Scene associated with the Main Menu window. </summary>
     public void NavigateToMainMenu()
     {
         SceneManager.LoadScene(SceneNames.MainMenu);

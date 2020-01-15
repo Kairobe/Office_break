@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7791525071550077355}
   m_Layer: 0
   m_Name: LevelController
-  m_TagString: Nivel
+  m_TagString: LevelController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45,9 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipPrefab: {fileID: 2390302518047609158, guid: 9312a1def25dae841a3c5561cd63fc8d,
     type: 3}
-  maletinPrefab: {fileID: 8728482394158219955, guid: 6f60c2483ff79ce41b3eed43d769e3d3,
+  briefcasePrefab: {fileID: 8728482394158219955, guid: 6f60c2483ff79ce41b3eed43d769e3d3,
     type: 3}
-  extintorPrefab: {fileID: 2428617603961018142, guid: ce763ad3ce9a6d341bb0428587d9f5cf,
+  extinguisherPrefab: {fileID: 2428617603961018142, guid: ce763ad3ce9a6d341bb0428587d9f5cf,
     type: 3}
   playerGameObjects:
   - {fileID: 0}
