@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2998865241321166650}
-  - component: {fileID: 5763314079886543628}
+  - component: {fileID: 1848733084675406014}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 5862295275944181289}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5763314079886543628
+--- !u!114 &1848733084675406014
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,12 +40,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 609649952235222860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9857a78341adc844b2a102c34672aa0, type: 3}
+  m_Script: {fileID: 11500000, guid: 242fa43124edf4d478240e5b21ce3126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   coffeBar: {fileID: 6691821723844803541}
   playerObject: {fileID: 0}
-  coffeeBarImage: {fileID: 2598620487071677588}
+  coffeeBarImage: {fileID: 7954135885958996581}
 --- !u!1 &632864123538037295
 GameObject:
   m_ObjectHideFlags: 0
