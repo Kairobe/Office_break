@@ -13,7 +13,7 @@ public class DirectedAgent : MonoBehaviour
 
     private List<Vector3> levelRoutePoints;
 
-    private int nextIndex = 0;
+    [SerializeField] private int nextIndex = 0;
 
     private bool isStopped = false;
 

@@ -6,8 +6,7 @@ public class CoffeUI : MonoBehaviour
     public RectTransform coffeBar;
     private float coffePercentaje;
     public GameObject playerObject;
-    private Player player;
-    public Image tmp;
+    private Player player;  public Image tmp;
     private float animationStatus;
     private bool playerSet = false;
 
