@@ -46,6 +46,8 @@ public class TutorialNivel : MonoBehaviour
 
     private bool MaletinPillado = false;
 
+    private Vector3 posactual;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +56,7 @@ public class TutorialNivel : MonoBehaviour
 
         // TextoTutorial = this.GetComponent<Text>();
         textoEscrito = "Bienvenido/a al tutorial!";
-        textoEscrito = textoEscrito + "\n (Pulsa cualquier tecla para seguir.)";
+        //textoEscrito = textoEscrito + "\n (Pulsa cualquier tecla para seguir.)";
         faseDelTutorial = 0;
         TextoTutorial.text = textoEscrito;
 
@@ -73,138 +75,124 @@ public class TutorialNivel : MonoBehaviour
         //InitializeObjects();
 
         //this.controladorUi.UpdateLapCounter(this.lapNumber, this.raceLapsNumber);
+
+         posactual = player.transform.position;
     }
 
-    private void Awake()
-    {
-        /* GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("CheckPoint");
-         this.currentLevelCheckPoints = new GameObject[checkpoints.Length];
-
-         this.currentLevelCheckPoints[0] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint0");
-         this.currentLevelCheckPoints[1] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint1");
-         this.currentLevelCheckPoints[2] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint2");
-         this.currentLevelCheckPoints[3] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint3");
-
-         for (int i = 1; i < this.currentLevelCheckPoints.Length; i++)
-         {
-             this.currentLevelCheckPoints[i].SetActive(false);
-         }
-
-         this.controladorUi = GameObject.FindGameObjectWithTag("PropiedadesUi").GetComponent<ControladorUi>();*/
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
-        if (faseDelTutorial == 0)
-        {
-            StartCoroutine(EsperaTutorial());
 
-            posJugador = player.transform.position;
-
-            //Debug.Log(posJugador);
-            if (Input.anyKey)
-            {
-                faseDelTutorial = 1;
-                textoEscrito = "Bien hecho! \n Ahora prueba a moverte. ";
-                TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
-            }
-        }
-        Vector3 posactual = player.transform.position;
+        
 
         //Debug.Log(posactual);
         if (faseDelTutorial == 1)
         {
             //Vector3 posactual = player.transform.position;
-            if (Mathf.Abs(posactual[0] - posJugador[0]) > 2 || Mathf.Abs(posactual[2] - posJugador[2]) > 2)
-            {
-                faseDelTutorial = 2;
-                textoEscrito = "Te has movido!";
+    
+            
+                textoEscrito = "Puedes moverte con las flechas o asdw";
                 TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
-            }
+            
+        }
+        if (faseDelTutorial == 2)
+        {
+            ////StartCoroutine(EsperaTutorial());
+           
+                //StartCoroutine(EsperaTutorial());
+                textoEscrito = "Puede que encuentres clips o maletines mientras te mueves. \n Deberías recogerlos. \n Sirven para crear armas.";
+                TextoTutorial.text = textoEscrito;
+                //Instantiate(maletinPrefab, posMal, Quaternion.identity);
+
+                //faseDelTutorial = 4;
+            
         }
         if (faseDelTutorial == 3)
         {
-            //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                StartCoroutine(EsperaTutorial());
-                textoEscrito = "Puede que encuentres clips o maletines mientras te mueves. \n Deberías recogerlos. (Sirven para crear armas.) \n ¡Prueba a coger el maletín!";
-                TextoTutorial.text = textoEscrito;
-                Instantiate(maletinPrefab, posMal, Quaternion.identity);
+            ////StartCoroutine(EsperaTutorial());
 
-                //faseDelTutorial = 4;
-            }
+            //StartCoroutine(EsperaTutorial());
+            //textoEscrito = "Puede que encuentres clips o maletines mientras te mueves. \n Deberías recogerlos. (Sirven para crear armas.) \n ¡Prueba a coger el maletín!";
+            //TextoTutorial.text = textoEscrito;
+            Instantiate(maletinPrefab, posMal, Quaternion.identity);
+            faseDelTutorial = 4;
+            MaletinPillado = false;
+
+
+
         }
         if (faseDelTutorial == 4)
         {
-            //StartCoroutine(EsperaTutorial());
+            ////StartCoroutine(EsperaTutorial());
             //StartCoroutine(EsperaTutorial());
             if (MaletinPillado)
             {
-                textoEscrito = "¡Bien hecho! \n \n Además, de ese ascensor puede salir  jefe. (Aunque ahora no)  \n \n ";
+                textoEscrito = "¡Bien hecho! \n \n ";
                 TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
+                //StartCoroutine(EsperaTutorial());
 
                 //StartCoroutine(EsperaTutorial());
 
                 //faseDelTutorial = 5;
+            } else
+            {
+                textoEscrito = "¡Intenta coger el maletín!";
+                TextoTutorial.text = textoEscrito;
             }
         }
         if (faseDelTutorial == 5)
         {
             textoEscrito = "Para superar a tus enemigos, puedes dispararles. \n Prueba a pulsar espacio.";
             TextoTutorial.text = textoEscrito;
-            StartCoroutine(EsperaTutorial());
+            //StartCoroutine(EsperaTutorial());
 
-            //Debug.Log(faseDelTutorial);
-            //faseDelTutorial = 6;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //Debug.Log(faseDelTutorial);
+                faseDelTutorial = 6;
+            }
         }
         if (faseDelTutorial == 6)
         {
-            //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))
-            {
-                textoEscrito = "Bien hecho! \n En tus aventuras verás objetos que no son clips. Te darán ventajas útiles. \n \n (Pulsa enter para continuar)";
+            
+                textoEscrito = "Bien hecho! \n ";
                 TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
+                //StartCoroutine(EsperaTutorial());
 
                 //faseDelTutorial = 7;
-            }
+            
+
         }
         if (faseDelTutorial == 7)
         {
-            //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                textoEscrito = "También puedes acceder al menú de creación de objetos al final de nivel. \n \n (Pulsa enter para continuar)";
+            ////StartCoroutine(EsperaTutorial());
+           
+                textoEscrito = "Del ascensor puede salir el jefe. \n ¡Que no te alcance!";
                 TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
+                //StartCoroutine(EsperaTutorial());
 
                 //faseDelTutorial = 8;
-            }
+            
         }
         if (faseDelTutorial == 8)
         {
-            //StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                textoEscrito = "Y con esto ya puedes empezar a jugar. Pulsa enter para ir al menú principal :)";
+            ////StartCoroutine(EsperaTutorial());
+           
+                textoEscrito = "Y con esto ya puedes empezar a jugar. Pulsa -> para ir al menú principal :)";
                 TextoTutorial.text = textoEscrito;
-                StartCoroutine(EsperaTutorial());
+                //StartCoroutine(EsperaTutorial());
 
                 //faseDelTutorial = 9;
-            }
+            
         }
         if (faseDelTutorial == 9)
         {
-            // StartCoroutine(EsperaTutorial());
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-            }
+            // //StartCoroutine(EsperaTutorial());
+            
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+            
         }
     }
 
@@ -393,5 +381,28 @@ public class TutorialNivel : MonoBehaviour
     public void pillarMaletin()
     {
         MaletinPillado = true;
+    }
+
+    public void flechaleft()
+    {
+       // Debug.Log(faseDelTutorial);
+        if (faseDelTutorial == 4)
+        {
+            faseDelTutorial = 2;
+        }
+        else if (faseDelTutorial ==7)
+        {
+            faseDelTutorial = 5;
+        }
+        else if (faseDelTutorial > 1)
+        {
+            faseDelTutorial -= 1; 
+        }
+        
+    }
+    public void flecharight()
+    {
+        //Debug.Log(faseDelTutorial);
+        faseDelTutorial += 1;
     }
 }
