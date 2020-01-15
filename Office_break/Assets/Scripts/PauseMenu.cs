@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        if ((Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape)) && canvas != null)
         {
             canvas.enabled = !canvas.enabled;
             Time.timeScale = canvas.enabled ? 0 : 1;
@@ -27,8 +27,11 @@ public class PauseMenu : MonoBehaviour
 
     public void ContinueLevel()
     {
-        canvas.enabled = !canvas.enabled;
-        Time.timeScale = canvas.enabled ? 0 : 1;
+        if(canvas != null)
+        {
+            canvas.enabled = !canvas.enabled;
+            Time.timeScale = canvas.enabled ? 0 : 1;
+        }        
     }
 
     public void Exit()

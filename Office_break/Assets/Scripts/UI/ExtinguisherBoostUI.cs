@@ -16,7 +16,7 @@ public class ExtinguisherBoostUI : MonoBehaviour {
         fullExtinguisher.fillAmount = 0;
     }
     void LateUpdate() {
-        fullExtinguisher.fillAmount = player.boostLeft/player.boostMax;
+        if(fullExtinguisher != null) fullExtinguisher.fillAmount = player.boostLeft/player.boostMax;
     }
 
 }
