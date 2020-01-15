@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,16 +11,14 @@ public class NivelVolumn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        texto = GetComponent<Text>();
-
-        
+        texto = GetComponent<Text>();        
     }
 
     // Update is called once per frame
     void Update()
     {
-        vol = AudioListener.volume;
+        vol = AudioListener.volume * 100;
         if(vol < 0) { vol = 0; }
-        texto.text = vol.ToString();
+        texto.text = Math.Floor(vol).ToString() ;
     }
 }

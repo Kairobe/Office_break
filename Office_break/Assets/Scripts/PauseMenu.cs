@@ -7,14 +7,12 @@ using UnityEngine.UI;
 public class PauseMenu : MonoBehaviour
 {
     private Canvas canvas;
-    private Text volumeValue;
-
+    
     // Start is called before the first frame update
     void Start()
     { 
         canvas = this.GetComponent<Canvas>();
         canvas.enabled = false;
-        volumeValue = GameObject.FindGameObjectWithTag("TextoVolumen").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -41,18 +39,21 @@ public class PauseMenu : MonoBehaviour
     public void VolumeMute()
     {
         AudioListener.volume = 0;
-        volumeValue.text = AudioListener.volume * 100 + "";
     }
 
     public void VolumeReduce()
     {
-        AudioListener.volume -= 1;
-        volumeValue.text = AudioListener.volume * 100 + "";
+        if(AudioListener.volume > 0)
+        {
+            AudioListener.volume -= (float)0.01;
+        }        
     }
     
     public void VolumeIncrease()
     {
-        AudioListener.volume += 1;
-        volumeValue.text = AudioListener.volume * 100 + "";
+        if(AudioListener.volume < 1)
+        {
+            AudioListener.volume += (float)0.01;
+        }        
     }
 }
