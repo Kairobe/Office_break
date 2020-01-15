@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3131538511670130810}
   - component: {fileID: 7948000984697031571}
   - component: {fileID: 507392574259308584}
+  - component: {fileID: 3402717028518411959}
   m_Layer: 0
   m_Name: "M\xE1s volumen"
   m_TagString: Untagged
@@ -118,9 +119,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7948000984697031571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3402717028518411959}
+        m_MethodName: VolumeIncrease
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &3402717028518411959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302267756917569516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &890165640726186607
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +157,7 @@ GameObject:
   - component: {fileID: 6724013143902386915}
   - component: {fileID: 7640861524229676985}
   - component: {fileID: 2257634949731239661}
+  - component: {fileID: 5020801591260575694}
   m_Layer: 0
   m_Name: Mute
   m_TagString: Untagged
@@ -239,9 +264,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7640861524229676985}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5020801591260575694}
+        m_MethodName: VolumeMute
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &5020801591260575694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890165640726186607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1805323047677360347
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,6 +302,7 @@ GameObject:
   - component: {fileID: 6062786845021148796}
   - component: {fileID: 763200250380470255}
   - component: {fileID: 5099043592283867635}
+  - component: {fileID: 4899170342935145135}
   m_Layer: 0
   m_Name: Menos volumen
   m_TagString: Untagged
@@ -360,9 +409,32 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 763200250380470255}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4899170342935145135}
+        m_MethodName: VolumeReduce
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &4899170342935145135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805323047677360347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1886914889093503363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,6 +1072,7 @@ GameObject:
   - component: {fileID: 6277635255972031626}
   - component: {fileID: 8823162663032543615}
   - component: {fileID: 5122799923270199607}
+  - component: {fileID: 1304164947615299641}
   m_Layer: 0
   m_Name: Salir
   m_TagString: Untagged
@@ -1107,12 +1180,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 1304164947615299641}
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1120,6 +1193,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1304164947615299641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7394660591041912840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7867659156985187251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,6 +1217,7 @@ GameObject:
   - component: {fileID: 59895488127137563}
   - component: {fileID: 9097065448199770830}
   - component: {fileID: 885525639974839773}
+  - component: {fileID: 3178202622378101359}
   m_Layer: 0
   m_Name: Continuar
   m_TagString: Untagged
@@ -1239,12 +1325,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
-        m_MethodName: 
+      - m_Target: {fileID: 3178202622378101359}
+        m_MethodName: ContinueLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1252,6 +1338,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &3178202622378101359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7867659156985187251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c22ecb98124ca4986b33fc1c109670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8817349051518372321
 GameObject:
   m_ObjectHideFlags: 0
@@ -1265,7 +1363,7 @@ GameObject:
   - component: {fileID: 3872515990392113225}
   m_Layer: 0
   m_Name: Volumen
-  m_TagString: Untagged
+  m_TagString: TextoVolumen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
