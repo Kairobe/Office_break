@@ -18,11 +18,15 @@ public class Nivel : MonoBehaviour
     [SerializeField]
     private int clipMaxNumber, maletinMaxNumber, extintorMaxNumber = 0;
 
+    private GameObject player;
+
     public List<(Vector3 position, int rotation)> availablePositions;
 
     private ControladorUi controladorUi;
 
     public GameObject[] currentLevelCheckPoints;
+
+    private Dictionary<GameObject, float> currentLevelLightsDictionary;
 
     private int activeCheckPoint = 0;
 
@@ -53,8 +57,12 @@ public class Nivel : MonoBehaviour
 
     private void Awake()
     {
+        this.player = this.playerGameObjects.FirstOrDefault(pgo => pgo.CompareTag("Player"));
+
         GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("CheckPoint");
         this.currentLevelCheckPoints = new GameObject[checkpoints.Length];
+
+        this.currentLevelLightsDictionary = GameObject.FindGameObjectsWithTag("InnerLight").ToDictionary(k => k, v => v.GetComponent<Light>().intensity);
 
         this.currentLevelCheckPoints[0] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint0");
         this.currentLevelCheckPoints[1] = checkpoints.FirstOrDefault(cp => cp.name == "CheckPoint1");
@@ -77,6 +85,25 @@ public class Nivel : MonoBehaviour
         this.playerPositionInRace = playerPosition;
 
         this.controladorUi.UpdatePlayerPositionInRace(playerPosition, totalPlayers);
+
+        ManageInnerLights();
+    }
+
+    private void ManageInnerLights()
+    {
+        foreach (GameObject lightGameObject in currentLevelLightsDictionary.Keys)
+        {
+            Light lightComponent = lightGameObject.GetComponent<Light>();
+
+            if (Vector3.Distance(lightGameObject.transform.position, this.player.transform.position) > 15)
+            {
+                lightComponent.intensity = 0;
+            }
+            else
+            {
+                lightComponent.intensity = currentLevelLightsDictionary[lightGameObject];
+            }
+        }
     }
 
     /// <summary>
@@ -145,9 +172,7 @@ public class Nivel : MonoBehaviour
         };
     }
 
-    /// <summary>
-    /// Increases the number of collected objects of the given type in the given units.
-    /// </summary>
+    /// <summary> Increases the number of collected objects of the given type in the given units. </summary>
     /// <param name="objectType"> The type of the object to increase the collected number. </param>
     /// <param name="units">
     /// (Optional) The total ammount of units to increase. By default it is set to one unit.

@@ -20,6 +20,7 @@ TagManager:
   - Oponent
   - PlayerExtinguisher
   - ExtinguisherParticleSystem
+  - InnerLight
   layers:
   - Default
   - TransparentFX
