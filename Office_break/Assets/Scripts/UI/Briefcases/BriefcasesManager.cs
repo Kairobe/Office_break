@@ -1,42 +1,26 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class BriefcasesManager : MonoBehaviour
 {
-    private int currentPosition = 1;
-    private int collectedBriefcases = 0;
+    [SerializeField]
+    private GameObject openBriefcaseContainerGameObject;
 
     [SerializeField]
-    private GameObject chooseBriefcaseContainerGameObject, openBriefcaseContainerGameObject;
+    private GameObject standardBriefcase, silverBriefcase, goldenBriefcase;
 
     [SerializeField]
-    private GameObject leftButtonGameObject, rightButtonGameObject, openBriefcaseGameObject;
+    private GameObject acceptButtonGameObject, openBriefcaseButtonGameObject;
 
     [SerializeField]
-    private GameObject leftPanelGameObject, rightPanelGameObject, briefcaseIndexGameObject;
+    private GameObject obtainedItemsTextGameObject, obtainedBriefcaseTypeTextGameObject;
 
-    private Button leftButton, rightButton, openBriefcaseButton;
-    private Text briefcaseIndexText, itemsObtainedText;
+    private BriefcaseType obtainedBriefcaseType;
 
     // Start is called before the first frame update
     void Start()
     {
         this.ShowMenu(CurrentLevelController.CurrentLevelData.collectedBriefcases);
-        this.UpdateBriefcaseIndexText();
-    }
-
-    private void Awake()
-    {
-        this.leftButton = this.leftButtonGameObject.GetComponentInChildren<Button>();
-        this.rightButton = this.rightButtonGameObject.GetComponentInChildren<Button>();
-        this.openBriefcaseButton = this.openBriefcaseGameObject.GetComponentInChildren<Button>();
-        this.briefcaseIndexText = this.briefcaseIndexGameObject.GetComponentInChildren<Text>();
-        this.itemsObtainedText = this.openBriefcaseContainerGameObject.GetComponentsInChildren<Text>().FirstOrDefault(t => t.name == "ObtainedItemsText");
-
-        this.leftButton.onClick.AddListener(() => LeftButtonClicked());
-        this.rightButton.onClick.AddListener(() => RightButtonClicked());
-        this.openBriefcaseButton.onClick.AddListener(() => OpenBriefcaseButtonClicked());
     }
 
     // Update is called once per frame
@@ -46,79 +30,81 @@ public class BriefcasesManager : MonoBehaviour
 
     public void ShowMenu(int collectedBriefcases)
     {
-        this.leftPanelGameObject.SetActive(false);
-        this.rightPanelGameObject.SetActive(false);
+        string obtainedBriefcaseTypeToSpanish = string.Empty;
 
-        this.collectedBriefcases = collectedBriefcases;
-
-        if (this.collectedBriefcases > 1)
+        if (collectedBriefcases > 0)
         {
-            this.rightPanelGameObject.SetActive(true);
-        }
-    }
+            if (collectedBriefcases < 2)
+            {
+                this.obtainedBriefcaseType = BriefcaseType.Standard;
 
-    private void LeftButtonClicked()
-    {
-        if (this.collectedBriefcases == 0 || this.currentPosition == 1)
+                this.standardBriefcase.SetActive(true);
+                this.silverBriefcase.SetActive(false);
+                this.goldenBriefcase.SetActive(false);
+
+                obtainedBriefcaseTypeToSpanish = "normal";
+            }
+            else if (collectedBriefcases < 5)
+            {
+                this.obtainedBriefcaseType = BriefcaseType.Silver;
+
+                this.standardBriefcase.SetActive(false);
+                this.silverBriefcase.SetActive(true);
+                this.goldenBriefcase.SetActive(false);
+
+                obtainedBriefcaseTypeToSpanish = "de plata";
+            }
+            else
+            {
+                this.obtainedBriefcaseType = BriefcaseType.Gold;
+
+                this.standardBriefcase.SetActive(false);
+                this.silverBriefcase.SetActive(false);
+                this.goldenBriefcase.SetActive(true);
+
+                obtainedBriefcaseTypeToSpanish = "de oro";
+            }
+
+            this.obtainedBriefcaseTypeTextGameObject.GetComponent<Text>().text = $"Has coleccionado {collectedBriefcases} maletines, lo que corresponde a un maletin {obtainedBriefcaseTypeToSpanish}!";
+            this.openBriefcaseButtonGameObject.GetComponent<Button>().onClick.AddListener(() => OpenBriefcaseButtonClicked());
+        }
+        else
         {
-            return;
+            this.obtainedBriefcaseTypeTextGameObject.GetComponent<Text>().text = "No has obtenido ningún maletín...";
+
+            this.openBriefcaseButtonGameObject.SetActive(false);
+            this.acceptButtonGameObject.SetActive(true);
         }
-
-        this.currentPosition--;
-
-        if (this.currentPosition == 1)
-        {
-            this.leftPanelGameObject.SetActive(false);
-        }
-        else if (this.currentPosition != 1)
-        {
-            this.leftPanelGameObject.SetActive(true);
-        }
-
-        this.rightPanelGameObject.SetActive(true);
-        this.UpdateBriefcaseIndexText();
-    }
-
-    private void RightButtonClicked()
-    {
-        if (this.collectedBriefcases == 0 || this.currentPosition == collectedBriefcases)
-        {
-            return;
-        }
-
-        this.currentPosition++;
-
-        if (this.currentPosition == collectedBriefcases)
-        {
-            this.rightPanelGameObject.SetActive(false);
-        }
-        else if (this.currentPosition < collectedBriefcases)
-        {
-            this.rightPanelGameObject.SetActive(true);
-        }
-
-        this.leftPanelGameObject.SetActive(true);
-        this.UpdateBriefcaseIndexText();
     }
 
     private void OpenBriefcaseButtonClicked()
     {
-        this.chooseBriefcaseContainerGameObject.SetActive(false);
-        this.openBriefcaseContainerGameObject.SetActive(true);
-
         this.GenerateRandomObjectCollection();
-    }
-
-    private void UpdateBriefcaseIndexText()
-    {
-        this.briefcaseIndexText.text = $"Maletin {this.currentPosition} de {this.collectedBriefcases}";
     }
 
     private void GenerateRandomObjectCollection()
     {
-        int numberOfItemsToGenerate = Random.Range(3, 20);
+        int numberOfItemsToGenerate = 0;
 
-        this.itemsObtainedText.text = $"Enhorabuena! Has obtenido {numberOfItemsToGenerate} clips!";
+        switch (this.obtainedBriefcaseType)
+        {
+            case BriefcaseType.Standard:
+                numberOfItemsToGenerate = UnityEngine.Random.Range(3, 6);
+
+                break;
+            case BriefcaseType.Silver:
+                numberOfItemsToGenerate = UnityEngine.Random.Range(6, 12);
+
+                break;
+            case BriefcaseType.Gold:
+                numberOfItemsToGenerate = UnityEngine.Random.Range(12, 20);
+
+                break;
+            default:
+                break;
+        }
+
+        this.obtainedItemsTextGameObject.GetComponent<Text>().text = $"Enhorabuena! Has obtenido {numberOfItemsToGenerate} clips!";
 
         UserData currentUserData = DataManager.LoadData("admin");
         currentUserData.Clips += numberOfItemsToGenerate;
