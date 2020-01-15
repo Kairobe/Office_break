@@ -38,6 +38,6 @@ public class EnemyAnimationController : StateMachineBehaviour
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        
+        animator.SetBool("isMoving", true);
     }
 }

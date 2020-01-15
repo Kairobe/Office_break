@@ -21,6 +21,7 @@ TagManager:
   - PlayerExtinguisher
   - ExtinguisherParticleSystem
   - InnerLight
+  - TextoVolumen
   layers:
   - Default
   - TransparentFX
