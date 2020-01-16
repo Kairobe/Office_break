@@ -349,6 +349,6 @@ public class LevelController : MonoBehaviour
         availablePositions.Add((new Vector3(14f, 0.5f, -3.5f), 90));
         availablePositions.Add((new Vector3(14f, 0.5f, -0.5f), 90));
         availablePositions.Add((new Vector3(0.8f, 0.5f, -2), 0));
-        availablePositions.Add((new Vector3(0.8f, 0.5f, -11), 0));
+        availablePositions.Add((new Vector3(2f, 0.5f, -11), 0));
     }
 }
